@@ -882,24 +882,22 @@ function calNext(){if(calM===11){calM=0;calY++}else calM++;renderCal()}
 
 function getEventBars(week){
   const ws=week[0].date, we=week[6].date
-  // 승인 여부 관계없이 모든 기획전 표시 (미참여 제외)
+  // 여러 날 기획전만 바로 표시 (시작일 != 종료일)
   const ovlp=_cache
     .filter(p=>(calPf==='all'||p.platform===calPf)
       && p.approval!=='미참여'
+      && p.start_date && p.end_date
+      && p.start_date!==p.end_date          // 1일짜리 제외
       && p.start_date<=we && p.end_date>=ws)
     .sort((a,b)=>a.start_date<b.start_date?-1:1)
   const laneEnd=[], bars=[]
   for(const p of ovlp){
     const vs=p.start_date<ws?ws:p.start_date
     const ve=p.end_date>we?we:p.end_date
-    // 이 주(week)에서 시작 셀 인덱스
     let si=-1, ei=-1
     for(let i=0;i<week.length;i++){
       const d=week[i].date
-      if(d>=vs&&d<=ve){
-        if(si===-1)si=i
-        ei=i
-      }
+      if(d>=vs&&d<=ve){if(si===-1)si=i;ei=i}
     }
     if(si===-1)continue
     let lane=0
@@ -909,6 +907,17 @@ function getEventBars(week){
     bars.push({p,colStart:si+1,colEnd:ei+2,lane:lane+1,isStart:p.start_date>=ws,isEnd:p.end_date<=we})
   }
   return bars
+}
+
+// 특정 날짜의 1일짜리 기획전 목록
+function getSingleDayEvents(dateStr){
+  return _cache.filter(p=>
+    (calPf==='all'||p.platform===calPf)
+    && p.approval!=='미참여'
+    && p.start_date && p.end_date
+    && p.start_date===dateStr
+    && p.end_date===dateStr
+  )
 }
 
 function renderCal(){
@@ -923,25 +932,43 @@ function renderCal(){
   const rem=(7-cells.length%7)%7
   for(let i=1;i<=rem;i++)cells.push({day:i,date:dStr(ny,nm,i),cur:false})
   const weeks=[];for(let i=0;i<cells.length;i+=7)weeks.push(cells.slice(i,i+7))
+
   let html=''
   const LANE_H=22, LANE_PAD=2
+
   weeks.forEach(week=>{
     const bars=getEventBars(week)
     const maxLane=bars.length?Math.max(...bars.map(b=>b.lane)):0
-    html+=`<div class="cal-week"><div class="cal-days-row">`
-    week.forEach(c=>{const isTod=c.cur&&c.date===todayStr;html+=`<div class="cal-dc${!c.cur?' other':''}"><span class="day-n${isTod?' tod':''}">${c.day}</span></div>`})
+
+    html+=`<div class="cal-week">`
+
+    // ── 날짜 행 (1일짜리 이벤트 점 포함) ──
+    html+=`<div class="cal-days-row">`
+    week.forEach(c=>{
+      const isTod=c.cur&&c.date===todayStr
+      const singles=getSingleDayEvents(c.date)
+      const dots=singles.slice(0,3).map(p=>{
+        const pf=PF[p.platform]||PF['공홈']
+        return`<span onclick="event.stopPropagation();openSheet('${p.id}')" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${pf.barBg};cursor:pointer;flex-shrink:0"></span>`
+      }).join('')
+      html+=`<div class="cal-dc${!c.cur?' other':''}">
+        <span class="day-n${isTod?' tod':''}">${c.day}</span>
+        ${dots?`<div style="display:flex;justify-content:center;align-items:center;gap:2px;margin-top:3px;min-height:8px">${dots}</div>`:`<div style="min-height:8px"></div>`}
+      </div>`
+    })
     html+=`</div>`
+
+    // ── 여러날 기획전 바 영역 ──
     if(maxLane>0){
       const wrapH=maxLane*LANE_H+LANE_PAD
       html+=`<div style="position:relative;height:${wrapH}px;margin-bottom:4px">`
       bars.forEach(b=>{
         const pf=PF[b.p.platform]||PF['공홈']
-        // 바 위치: 퍼센트 기반 절대 좌표 (1칸짜리도 정확히 렌더링)
         const col=100/7
         const leftBase=(b.colStart-1)*col
         const widthBase=(b.colEnd-b.colStart)*col
-        const ml=b.isStart?4:0  // 시작 여백
-        const mr=b.isEnd?4:0    // 끝 여백
+        const ml=b.isStart?4:0
+        const mr=b.isEnd?4:0
         const top=(b.lane-1)*LANE_H+LANE_PAD
         const blr=b.isStart?9:0
         const brr=b.isEnd?9:0
@@ -950,8 +977,9 @@ function renderCal(){
       })
       html+=`</div>`
     }else{
-      html+=`<div style="height:6px"></div>`
+      html+=`<div style="height:4px"></div>`
     }
+
     html+=`</div>`
   })
   document.getElementById('cal-weeks').innerHTML=html
