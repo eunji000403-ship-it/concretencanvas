@@ -881,14 +881,27 @@ function calPrev(){if(calM===0){calM=11;calY--}else calM--;renderCal()}
 function calNext(){if(calM===11){calM=0;calY++}else calM++;renderCal()}
 
 function getEventBars(week){
-  const ws=week[0].date,we=week[6].date
-  const ovlp=_cache.filter(p=>(calPf==='all'||p.platform===calPf)&&p.approval==='승인'&&p.start_date<=we&&p.end_date>=ws).sort((a,b)=>a.start_date<b.start_date?-1:1)
-  const laneEnd=[],bars=[]
+  const ws=week[0].date, we=week[6].date
+  // 승인 여부 관계없이 모든 기획전 표시 (미참여 제외)
+  const ovlp=_cache
+    .filter(p=>(calPf==='all'||p.platform===calPf)
+      && p.approval!=='미참여'
+      && p.start_date<=we && p.end_date>=ws)
+    .sort((a,b)=>a.start_date<b.start_date?-1:1)
+  const laneEnd=[], bars=[]
   for(const p of ovlp){
-    const vs=p.start_date<ws?ws:p.start_date,ve=p.end_date>we?we:p.end_date
-    const si=week.findIndex(c=>c.date>=vs&&c.date<=ve)
-    const ei=week.reduce((acc,c,i)=>c.date>=vs&&c.date<=ve?i:acc,-1)
-    if(si===-1||ei===-1)continue
+    const vs=p.start_date<ws?ws:p.start_date
+    const ve=p.end_date>we?we:p.end_date
+    // 이 주(week)에서 시작 셀 인덱스
+    let si=-1, ei=-1
+    for(let i=0;i<week.length;i++){
+      const d=week[i].date
+      if(d>=vs&&d<=ve){
+        if(si===-1)si=i
+        ei=i
+      }
+    }
+    if(si===-1)continue
     let lane=0
     while(lane<3&&laneEnd[lane]&&laneEnd[lane]>=vs)lane++
     if(lane>=3)continue
