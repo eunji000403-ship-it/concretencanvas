@@ -17,10 +17,7 @@
 :root{
   --bg:#F2F4F6;--white:#fff;--blue:#3182F6;--blue-l:#EBF3FE;
   --t1:#191F28;--t2:#6B7684;--t3:#B0B8C1;--border:#E5E8EB;
-  --green:#00C471;--green-bg:#E8FAF2;
-  --red:#F04452;--red-bg:#FFF0F0;
-  --orange:#FF8B00;--orange-bg:#FFF7E6;
-  --purple:#8A3FFC;--purple-bg:#F3EEFF;
+  --red:#E8504A;--red-bg:#FFF0F0;
   --sh:0 2px 12px rgba(0,0,0,.06);--sh2:0 4px 20px rgba(0,0,0,.10);
   --r:16px;--rsm:10px;
   --th:64px;--safe:env(safe-area-inset-bottom,0px);
@@ -40,10 +37,10 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .auth-btn{width:100%;background:var(--blue);color:#fff;border:none;border-radius:var(--rsm);padding:16px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;margin-top:4px;box-shadow:0 4px 16px rgba(49,130,246,.3);letter-spacing:-.02em;}
 .auth-toggle{text-align:center;margin-top:16px;font-size:13px;color:var(--t2);}
 .auth-toggle a{color:var(--blue);font-weight:700;cursor:pointer;}
-.auth-err{background:var(--red-bg);color:var(--red);border-radius:var(--rsm);padding:10px 14px;font-size:13px;margin-top:10px;text-align:center;display:none;}
+.auth-err{background:var(--bg);color:var(--t2);border:1px solid var(--border);border-radius:var(--rsm);padding:10px 14px;font-size:13px;margin-top:10px;text-align:center;display:none;}
 .pending-wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;text-align:center;}
-.pending-ico{width:64px;height:64px;background:var(--orange-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
-.pending-ico svg{width:28px;height:28px;color:var(--orange);}
+.pending-ico{width:64px;height:64px;background:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+.pending-ico svg{width:28px;height:28px;color:var(--t2);}
 .pending-title{font-size:20px;font-weight:800;letter-spacing:-.03em;margin-bottom:8px;}
 .pending-desc{font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:24px;}
 .btn-out{background:var(--bg);border:none;border-radius:var(--rsm);padding:13px 24px;font-size:14px;font-weight:700;color:var(--t2);font-family:inherit;cursor:pointer;}
@@ -73,17 +70,17 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .stat-scroll{display:flex;gap:10px;padding:16px 20px 0;overflow-x:auto;scrollbar-width:none;margin-bottom:24px;}
 .stat-scroll::-webkit-scrollbar{display:none;}
 .stat-tile{flex-shrink:0;width:130px;background:var(--white);border-radius:var(--r);box-shadow:var(--sh);padding:16px;}
-.stat-tile.hi{background:var(--blue);}
+.stat-tile.hi{background:var(--white);}
 .slbl{font-size:11px;font-weight:500;color:var(--t2);margin-bottom:8px;}
-.stat-tile.hi .slbl{color:rgba(255,255,255,.7);}
-.snum{font-size:28px;font-weight:900;letter-spacing:-.04em;line-height:1;}
-.stat-tile.hi .snum{color:#fff;}
+.stat-tile.hi .slbl{color:var(--t2);}
+.snum{font-size:28px;font-weight:900;letter-spacing:-.04em;line-height:1;color:var(--t1);}
+.stat-tile.hi .snum{color:var(--blue);}
 .ssub{font-size:11px;color:var(--t3);margin-top:4px;}
-.stat-tile.hi .ssub{color:rgba(255,255,255,.6);}
+.stat-tile.hi .ssub{color:var(--t3);}
 .hero{padding:16px 20px 0;margin-bottom:4px;}
 .hero-g{font-size:13px;color:var(--t2);margin-bottom:4px;}
 .hero-t{font-size:22px;font-weight:900;letter-spacing:-.04em;line-height:1.2;}
-.hero-t span{color:var(--blue);}
+.hero-t span{color:var(--t1);}
 .row{display:flex;align-items:center;gap:12px;padding:14px 20px;cursor:pointer;border-bottom:1px solid var(--bg);}
 .row:last-child{border-bottom:none;}
 .row:active{background:var(--bg);}
@@ -95,11 +92,11 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .row-right{flex-shrink:0;display:flex;align-items:center;gap:6px;}
 .chev svg{width:14px;height:14px;color:var(--t3);}
 .chip{display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;}
-.chip-wait{background:var(--orange-bg);color:var(--orange);}
-.chip-appl{background:var(--blue-l);color:var(--blue);}
-.chip-active{background:var(--green-bg);color:var(--green);}
+.chip-wait{background:var(--bg);color:var(--t2);border:1px solid var(--border);}
+.chip-appl{background:var(--bg);color:var(--t2);border:1px solid var(--border);}
+.chip-active{background:var(--blue-l);color:var(--blue);}
 .chip-done{background:var(--bg);color:var(--t3);}
-.chip-before{background:var(--bg);color:var(--t2);}
+.chip-before{background:var(--bg);color:var(--t3);}
 .pf-tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--t2);}
 .pf-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 .prog-wrap{height:4px;background:var(--bg);border-radius:2px;overflow:hidden;margin:5px 0 2px;}
@@ -141,39 +138,40 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .seg-btn{flex-shrink:0;padding:7px 16px;border-radius:20px;border:none;background:var(--white);box-shadow:var(--sh);font-size:12px;font-weight:600;color:var(--t2);cursor:pointer;font-family:inherit;}
 .seg-btn.on{background:var(--t1);color:#fff;}
 
-/* ── APPROVAL CARD (redesigned) ─── */
+/* ── APPROVAL CARD ─── */
 .apv-card{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:12px;overflow:hidden;}
-.apv-bar{height:3px;background:var(--orange);}
-.apv-body{padding:18px 20px 16px;}
-.apv-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;}
-.apv-left{}
-.apv-pf-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
-.apv-deadline{font-size:12px;font-weight:700;color:var(--orange);}
-.apv-name{font-size:17px;font-weight:900;letter-spacing:-.03em;line-height:1.2;margin-bottom:3px;}
-.apv-manager{font-size:12px;color:var(--t2);}
+.apv-bar{height:2px;background:var(--border);}
+.apv-body{padding:16px 18px 14px;}
+.apv-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;}
+.apv-left{flex:1;min-width:0;}
+.apv-pf-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.apv-deadline{font-size:11px;font-weight:700;}
+.apv-deadline.urgent{color:var(--red);}
+.apv-deadline.normal{color:var(--t3);}
+.apv-name{font-size:17px;font-weight:900;letter-spacing:-.03em;line-height:1.2;margin-bottom:2px;padding-right:8px;}
+.apv-manager{font-size:12px;color:var(--t3);}
+.btn-detail-sm{background:transparent;border:none;color:var(--t3);font-size:11px;font-weight:600;font-family:inherit;cursor:pointer;padding:4px 0 4px 8px;flex-shrink:0;white-space:nowrap;display:flex;align-items:center;gap:3px;}
+.btn-detail-sm:active{color:var(--t2);}
+.btn-detail-sm svg{width:12px;height:12px;}
 
-/* 기간 + 할인 분리 레이아웃 */
-.apv-period-row{display:flex;align-items:center;gap:6px;background:var(--bg);border-radius:var(--rsm);padding:10px 14px;margin-bottom:10px;}
+/* 기간 */
+.apv-period-row{display:flex;align-items:center;gap:6px;background:var(--bg);border-radius:var(--rsm);padding:9px 13px;margin-bottom:10px;}
 .apv-period-label{font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.04em;margin-right:2px;flex-shrink:0;}
-.apv-period-val{font-size:13px;font-weight:700;letter-spacing:-.01em;}
+.apv-period-val{font-size:13px;font-weight:700;letter-spacing:-.01em;color:var(--t1);}
+.apv-period-sep{color:var(--t3);font-size:13px;}
+
+/* 할인 */
 .apv-discount-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
-.apv-disc-box{border-radius:var(--rsm);padding:12px 14px;border:1px solid transparent;}
-.apv-disc-box.brand{background:var(--purple-bg);border-color:rgba(138,63,252,.12);}
-.apv-disc-box.coupon{background:var(--blue-l);border-color:rgba(49,130,246,.12);}
-.apv-disc-lbl{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px;}
-.apv-disc-box.brand .apv-disc-lbl{color:var(--purple);}
-.apv-disc-box.coupon .apv-disc-lbl{color:var(--blue);}
-.apv-disc-val{font-size:22px;font-weight:900;letter-spacing:-.03em;}
-.apv-disc-box.brand .apv-disc-val{color:var(--purple);}
-.apv-disc-box.coupon .apv-disc-val{color:var(--blue);}
-.apv-disc-sub{font-size:11px;margin-top:2px;opacity:.65;}
-.apv-disc-box.brand .apv-disc-sub{color:var(--purple);}
-.apv-disc-box.coupon .apv-disc-sub{color:var(--blue);}
+.apv-disc-box{border-radius:var(--rsm);padding:11px 13px;background:var(--bg);}
+.apv-disc-lbl{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;color:var(--t3);}
+.apv-disc-val{font-size:22px;font-weight:900;letter-spacing:-.03em;color:var(--t1);}
+.apv-disc-sub{font-size:11px;margin-top:2px;color:var(--t3);}
 .apv-note{font-size:13px;color:var(--t2);background:var(--bg);border-radius:var(--rsm);padding:10px 13px;margin-bottom:12px;line-height:1.6;}
-.apv-btn-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
-.btn-detail{background:var(--bg);color:var(--t2);border:none;border-radius:var(--rsm);padding:12px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;}
-.btn-yes{background:var(--blue);color:#fff;border:none;border-radius:var(--rsm);padding:12px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;}
-.btn-no{background:var(--bg);color:var(--red);border:none;border-radius:var(--rsm);padding:12px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;}
+
+/* 버튼 2개 */
+.apv-btn-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.btn-yes{background:var(--blue);color:#fff;border:none;border-radius:var(--rsm);padding:13px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;letter-spacing:-.01em;}
+.btn-no{background:var(--bg);color:var(--t2);border:none;border-radius:var(--rsm);padding:13px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;}
 
 /* ── ADMIN USERS ─── */
 .user-row{display:flex;align-items:center;padding:14px 20px;border-bottom:1px solid var(--bg);gap:12px;}
@@ -199,11 +197,11 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .cr-lbl{font-size:11px;color:rgba(255,255,255,.6);margin-bottom:3px;}
 .cr-val{font-size:19px;font-weight:900;color:#fff;letter-spacing:-.03em;}
 .cr-note{font-size:10px;color:rgba(255,255,255,.5);margin-top:2px;}
-.cr-val.d{color:#FFB3B3;}.cr-val.w{color:#FFE5B0;}.cr-val.ok{color:#A8F0D0;}
+.cr-val.d{color:rgba(255,255,255,.6);}.cr-val.w{color:rgba(255,255,255,.8);}.cr-val.ok{color:#fff;}
 .cr-mw{height:3px;background:rgba(255,255,255,.2);border-radius:2px;margin-top:12px;overflow:hidden;}
 .cr-mf{height:100%;border-radius:2px;background:rgba(255,255,255,.85);transition:width .4s;}
-.calc-warn{background:var(--red-bg);border-radius:var(--rsm);padding:11px 14px;font-size:13px;color:var(--red);font-weight:500;display:none;margin-bottom:10px;}
-.calc-info{background:var(--orange-bg);border-radius:var(--rsm);padding:11px 14px;font-size:13px;color:var(--orange);font-weight:500;display:none;margin-bottom:10px;}
+.calc-warn{background:var(--bg);border:1px solid var(--border);border-radius:var(--rsm);padding:11px 14px;font-size:13px;color:var(--t2);font-weight:500;display:none;margin-bottom:10px;}
+.calc-info{background:var(--bg);border:1px solid var(--border);border-radius:var(--rsm);padding:11px 14px;font-size:13px;color:var(--t2);font-weight:500;display:none;margin-bottom:10px;}
 
 /* ── FORM ─── */
 .form-card{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:10px;}
@@ -231,11 +229,11 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .img-preview img{width:100%;max-height:200px;object-fit:cover;display:block;}
 .img-remove{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;}
 /* 겹침 경고 */
-.overlap-warn{background:var(--orange-bg);border-radius:var(--rsm);padding:12px 14px;margin:0 20px 10px;display:none;}
-.overlap-warn-title{font-size:12px;font-weight:700;color:var(--orange);margin-bottom:6px;}
-.overlap-item{font-size:12px;color:var(--t2);padding:5px 0;border-bottom:1px solid rgba(255,139,0,.12);display:flex;align-items:center;gap:8px;}
+.overlap-warn{background:var(--bg);border:1px solid var(--border);border-radius:var(--rsm);padding:12px 14px;margin:0 20px 10px;display:none;}
+.overlap-warn-title{font-size:12px;font-weight:700;color:var(--t2);margin-bottom:6px;}
+.overlap-item{font-size:12px;color:var(--t2);padding:5px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
 .overlap-item:last-child{border-bottom:none;}
-.overlap-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:var(--orange);}
+.overlap-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:var(--t3);}
 .submit-area{padding:0 20px 8px;}
 .btn-submit{width:100%;background:var(--blue);color:#fff;border:none;border-radius:var(--r);padding:17px;font-size:16px;font-weight:800;font-family:inherit;cursor:pointer;letter-spacing:-.02em;box-shadow:0 4px 16px rgba(49,130,246,.3);}
 .btn-submit:disabled{opacity:.5;}
@@ -260,15 +258,9 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .sheet-period-arrow{font-size:16px;color:var(--t3);}
 /* 할인 분리 */
 .sheet-disc-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 20px 14px;}
-.sheet-disc-box{border-radius:var(--rsm);padding:14px;}
-.sheet-disc-box.brand{background:var(--purple-bg);}
-.sheet-disc-box.coupon{background:var(--blue-l);}
-.sheet-disc-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;}
-.sheet-disc-box.brand .sheet-disc-lbl{color:var(--purple);}
-.sheet-disc-box.coupon .sheet-disc-lbl{color:var(--blue);}
-.sheet-disc-num{font-size:26px;font-weight:900;letter-spacing:-.04em;}
-.sheet-disc-box.brand .sheet-disc-num{color:var(--purple);}
-.sheet-disc-box.coupon .sheet-disc-num{color:var(--blue);}
+.sheet-disc-box{border-radius:var(--rsm);padding:14px;background:var(--bg);}
+.sheet-disc-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;color:var(--t3);}
+.sheet-disc-num{font-size:26px;font-weight:900;letter-spacing:-.04em;color:var(--t1);}
 .sheet-dv{height:1px;background:var(--bg);margin:0 20px 2px;}
 .sheet-dr{display:flex;justify-content:space-between;padding:12px 20px;border-bottom:1px solid var(--bg);}
 .sheet-dr:last-of-type{border-bottom:none;}
@@ -279,7 +271,7 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .sheet-note{background:var(--bg);border-radius:var(--rsm);padding:13px 16px;margin:0 20px 14px;font-size:13px;color:var(--t2);line-height:1.7;}
 .sheet-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 20px 4px;}
 .sa-close{background:var(--blue);color:#fff;border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}
-.sa-del{background:var(--bg);color:var(--red);border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}
+.sa-del{background:var(--bg);color:var(--t2);border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}
 
 /* ── TOAST ─── */
 .toast{position:fixed;bottom:calc(var(--th) + var(--safe) + 14px);left:20px;right:20px;z-index:999;background:var(--t1);color:#fff;border-radius:12px;padding:14px 18px;font-size:14px;font-weight:600;text-align:center;box-shadow:var(--sh2);transform:translateY(16px);opacity:0;transition:all .22s;pointer-events:none;}
@@ -351,7 +343,7 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
     </div>
     <div class="cal-wrap">
       <div class="cal-head-row">
-        <div class="cal-head-cell" style="color:#F04452">일</div>
+        <div class="cal-head-cell" style="color:var(--red)">일</div>
         <div class="cal-head-cell">월</div><div class="cal-head-cell">화</div><div class="cal-head-cell">수</div>
         <div class="cal-head-cell">목</div><div class="cal-head-cell">금</div>
         <div class="cal-head-cell" style="color:var(--blue)">토</div>
@@ -497,16 +489,16 @@ const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
 const today = new Date(), todayStr = today.toISOString().slice(0,10)
 
 const PF = {
-  '무신사': { dot:'#1A1A1A', bg:'#F5F5F5', fee:22, barBg:'rgba(26,26,26,.82)', barTxt:'#fff',
-    ico:`<svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>` },
-  '지그재그': { dot:'#FF4D4D', bg:'#FFF0F0', fee:20, barBg:'rgba(255,77,77,.82)', barTxt:'#fff',
-    ico:`<svg viewBox="0 0 24 24" fill="none" stroke="#FF4D4D" stroke-width="2" stroke-linecap="round"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/></svg>` },
-  '29cm':   { dot:'#5744E8', bg:'#F0EEFF', fee:18, barBg:'rgba(87,68,232,.82)', barTxt:'#fff',
-    ico:`<svg viewBox="0 0 24 24" fill="none" stroke="#5744E8" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>` },
-  'W컨셉':  { dot:'#00A870', bg:'#EDFAF5', fee:19, barBg:'rgba(0,168,112,.82)', barTxt:'#fff',
-    ico:`<svg viewBox="0 0 24 24" fill="none" stroke="#00A870" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>` },
-  '공홈':   { dot:'#FF6B2B', bg:'#FFF5EF', fee:5, barBg:'rgba(255,107,43,.82)', barTxt:'#fff',
-    ico:`<svg viewBox="0 0 24 24" fill="none" stroke="#FF6B2B" stroke-width="2" stroke-linecap="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>` },
+  '무신사': { dot:'#888', bg:'#F5F5F5', fee:22, barBg:'rgba(100,100,100,.75)', barTxt:'#fff',
+    ico:`<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>` },
+  '지그재그': { dot:'#888', bg:'#F5F5F5', fee:20, barBg:'rgba(80,80,80,.75)', barTxt:'#fff',
+    ico:`<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/></svg>` },
+  '29cm':   { dot:'#888', bg:'#F5F5F5', fee:18, barBg:'rgba(49,130,246,.75)', barTxt:'#fff',
+    ico:`<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>` },
+  'W컨셉':  { dot:'#888', bg:'#F5F5F5', fee:19, barBg:'rgba(60,60,60,.75)', barTxt:'#fff',
+    ico:`<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>` },
+  '공홈':   { dot:'#888', bg:'#F5F5F5', fee:5, barBg:'rgba(49,130,246,.55)', barTxt:'#fff',
+    ico:`<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>` },
 }
 const CHIP = {'신청전':'chip-before','결재대기':'chip-wait','신청완료':'chip-appl','진행중':'chip-active','종료':'chip-done'}
 const emptyHTML = m => `<div class="empty"><div class="empty-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r=".5" fill="currentColor"/></svg></div><div class="empty-txt">${m}</div></div>`
@@ -623,11 +615,11 @@ function renderHome(){
   document.getElementById('sec-pend-wrap').style.display=pend.length?'':'none'
   if(pend.length)document.getElementById('sec-pend').innerHTML=pend.map(p=>{
     const pf=PF[p.platform]||PF['공홈'],dd=Math.ceil((new Date(p.deadline)-new Date())/86400000)
-    return`<div class="row" onclick="openSheet('${p.id}')"><div class="row-ico" style="background:${pf.bg}">${pf.ico}</div><div class="row-body"><div class="row-title">${p.name}</div><div class="row-sub"><span class="pf-tag"><span class="pf-dot" style="background:${pf.dot}"></span>${p.platform}</span> · 마감 <strong style="color:var(--orange)">${dd>0?'D-'+dd:dd===0?'D-Day':'지남'}</strong></div></div><div class="row-right"><span class="chip chip-wait">결재대기</span><div class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div></div></div>`}).join('')
+    return`<div class="row" onclick="openSheet('${p.id}')"><div class="row-ico" style="background:#F5F5F5">${pf.ico}</div><div class="row-body"><div class="row-title">${p.name}</div><div class="row-sub"><span class="pf-tag"><span class="pf-dot" style="background:var(--t3)"></span>${p.platform}</span> · 마감 <strong style="color:${dd<=3?'var(--red)':'var(--t2)'}">${dd>0?'D-'+dd:dd===0?'D-Day':'지남'}</strong></div></div><div class="row-right"><span class="chip chip-wait">결재대기</span><div class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div></div></div>`}).join('')
   const act=d.filter(p=>p.status==='진행중')
   document.getElementById('sec-active').innerHTML=!act.length?emptyHTML('진행 중인 기획전이 없어요'):act.map(p=>{
     const pf=PF[p.platform]||PF['공홈'],pct=Math.min(100,Math.max(0,Math.round((new Date()-new Date(p.start_date))/(new Date(p.end_date)-new Date(p.start_date)||1)*100)))
-    return`<div class="row" onclick="openSheet('${p.id}')"><div class="row-ico" style="background:${pf.bg}">${pf.ico}</div><div class="row-body"><div class="row-title">${p.name}</div><div class="prog-wrap"><div class="prog-fill" style="width:${pct}%;background:${pf.dot}"></div></div><div style="font-size:11px;color:var(--t3);margin-top:1px">${p.start_date} → ${p.end_date}</div></div><div class="row-right"><span class="chip chip-active">${pct}%</span><div class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div></div></div>`}).join('')
+    return`<div class="row" onclick="openSheet('${p.id}')"><div class="row-ico" style="background:#F5F5F5">${pf.ico}</div><div class="row-body"><div class="row-title">${p.name}</div><div class="prog-wrap"><div class="prog-fill" style="width:${pct}%;background:var(--blue)"></div></div><div style="font-size:11px;color:var(--t3);margin-top:1px">${p.start_date} → ${p.end_date}</div></div><div class="row-right"><span class="chip chip-active">${pct}%</span><div class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div></div></div>`}).join('')
 }
 
 // ── CALENDAR ──────────────────────────────────────────────────────────
@@ -689,7 +681,7 @@ function renderTl(){
     const pf=PF[p.platform]||PF['공홈'],pct=Math.min(100,Math.max(0,Math.round((new Date()-new Date(p.start_date))/(new Date(p.end_date)-new Date(p.start_date)||1)*100)))
     const dd=Math.ceil((new Date(p.deadline)-new Date())/86400000)
     const ddT=p.status==='종료'?'종료':dd>0?`D-${dd}`:dd===0?'D-Day':'마감'
-    return`<div class="row" onclick="openSheet('${p.id}')"><div class="row-ico" style="background:${pf.bg}">${pf.ico}</div><div class="row-body"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span class="row-title" style="flex:1;min-width:0">${p.name}</span><span class="chip ${CHIP[p.status]||'chip-before'}" style="flex-shrink:0">${p.status}</span></div><div class="prog-wrap"><div class="prog-fill" style="width:${pct}%;background:${pf.dot}"></div></div><div style="display:flex;justify-content:space-between;margin-top:2px"><span style="font-size:11px;color:var(--t3)">${p.start_date} → ${p.end_date}</span><span style="font-size:11px;font-weight:700;color:${dd<=3&&dd>=0?'var(--orange)':'var(--t3)'}">${ddT}</span></div></div></div>`
+    return`<div class="row" onclick="openSheet('${p.id}')"><div class="row-ico" style="background:#F5F5F5">${pf.ico}</div><div class="row-body"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span class="row-title" style="flex:1;min-width:0">${p.name}</span><span class="chip ${CHIP[p.status]||'chip-before'}" style="flex-shrink:0">${p.status}</span></div><div class="prog-wrap"><div class="prog-fill" style="width:${pct}%;background:var(--blue)"></div></div><div style="display:flex;justify-content:space-between;margin-top:2px"><span style="font-size:11px;color:var(--t3)">${p.start_date} → ${p.end_date}</span><span style="font-size:11px;font-weight:700;color:${dd<=3&&dd>=0?'var(--red)':'var(--t2)'}">${ddT}</span></div></div></div>`
   }).join('')
 }
 
@@ -703,36 +695,41 @@ async function renderApv(){
   ${pend.map(p=>{
     const pf=PF[p.platform]||PF['공홈'],dd=Math.ceil((new Date(p.deadline)-new Date())/86400000)
     const hasDisc=p.disc_rate>0, hasCoupon=p.coupon_rate>0
+    const ddLabel=dd>0?'D-'+dd:dd===0?'D-Day':'마감'
+    const ddUrgent=dd<=3
     return`<div class="apv-card" id="apvc-${p.id}"><div class="apv-bar"></div><div class="apv-body">
       <div class="apv-top">
         <div class="apv-left">
-          <div class="apv-pf-row"><span class="pf-tag"><span class="pf-dot" style="background:${pf.dot}"></span>${p.platform}</span><span class="apv-deadline">마감 ${dd>0?'D-'+dd:dd===0?'D-Day':'지남'}</span></div>
+          <div class="apv-pf-row">
+            <span class="pf-tag"><span class="pf-dot" style="background:var(--t3)"></span>${p.platform}</span>
+            <span class="apv-deadline ${ddUrgent?'urgent':'normal'}">마감 ${ddLabel}</span>
+          </div>
           <div class="apv-name">${p.name}</div>
           <div class="apv-manager">${p.manager||'담당자 미지정'} 담당</div>
         </div>
+        <button class="btn-detail-sm" onclick="openSheet('${p.id}')">상세보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></button>
       </div>
       <div class="apv-period-row">
         <span class="apv-period-label">기간</span>
         <span class="apv-period-val">${fmtDate(p.start_date)}</span>
-        <span style="color:var(--t3);font-size:13px">→</span>
+        <span class="apv-period-sep">→</span>
         <span class="apv-period-val">${fmtDate(p.end_date)}</span>
-        <span style="margin-left:auto;font-size:11px;color:var(--t3)">(신청마감 ${fmtDate(p.deadline)})</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--t3)">신청 ${fmtDate(p.deadline)}</span>
       </div>
       <div class="apv-discount-row">
-        <div class="apv-disc-box brand">
-          <div class="apv-disc-lbl">브랜드 자체 할인</div>
-          <div class="apv-disc-val">${hasDisc?p.disc_rate+'%':'없음'}</div>
+        <div class="apv-disc-box">
+          <div class="apv-disc-lbl">브랜드 할인</div>
+          <div class="apv-disc-val">${hasDisc?p.disc_rate+'%':'—'}</div>
           ${hasDisc?`<div class="apv-disc-sub">정상가 대비</div>`:''}
         </div>
-        <div class="apv-disc-box coupon">
+        <div class="apv-disc-box">
           <div class="apv-disc-lbl">쿠폰 할인</div>
-          <div class="apv-disc-val">${hasCoupon?p.coupon_rate+'%':'없음'}</div>
+          <div class="apv-disc-val">${hasCoupon?p.coupon_rate+'%':'—'}</div>
           ${hasCoupon?`<div class="apv-disc-sub">추가 적용</div>`:''}
         </div>
       </div>
       ${p.note?`<div class="apv-note">💬 ${p.note}</div>`:''}
       <div class="apv-btn-row">
-        <button class="btn-detail" onclick="openSheet('${p.id}')">상세보기</button>
         <button class="btn-yes" onclick="doApprove('${p.id}',true)">참여 승인</button>
         <button class="btn-no" onclick="doApprove('${p.id}',false)">미참여</button>
       </div>
