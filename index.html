@@ -269,8 +269,9 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 /* 진행 바 */
 .sheet-prog{padding:0 20px 14px;}
 .sheet-note{background:var(--bg);border-radius:var(--rsm);padding:13px 16px;margin:0 20px 14px;font-size:13px;color:var(--t2);line-height:1.7;}
-.sheet-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 20px 4px;}
-.sa-close{background:var(--blue);color:#fff;border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}
+.sheet-acts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:0 20px 4px;}
+.sa-edit{background:var(--blue);color:#fff;border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}
+.sa-close{background:var(--bg);color:var(--t2);border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;}
 .sa-del{background:var(--bg);color:var(--t2);border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}
 
 /* ── TOAST ─── */
@@ -505,7 +506,7 @@ const emptyHTML = m => `<div class="empty"><div class="empty-ico"><svg viewBox="
 
 let _cache=[], _user=null, _profile=null, curScreen='home'
 let calY=today.getFullYear(), calM=today.getMonth(), calPf='all', tlF='all'
-let _imgFile=null
+let _imgFile=null, _editId=null
 
 // ── DATE FORMAT: YYYY-MM-DD → MM/DD ───────────────────────────────────
 function fmtDate(s){ if(!s)return'-'; const[,m,d]=s.split('-'); return `${parseInt(m)}/${parseInt(d)}` }
@@ -595,6 +596,7 @@ function go(id){
   if(id==='calendar')renderCal()
   if(id==='timeline')renderTl()
   if(id==='approval')renderApv()
+  if(id==='add'&&!_editId)resetAddForm()
 }
 
 // ── HOME ──────────────────────────────────────────────────────────────
@@ -852,35 +854,91 @@ function checkOverlap(){
   list.innerHTML=overlaps.map(p=>`<div class="overlap-item"><span class="overlap-dot"></span><div><div style="font-weight:600;color:var(--t1)">${p.name}</div><div style="font-size:11px;margin-top:1px">${fmtDate(p.start_date)} → ${fmtDate(p.end_date)} · ${p.status}</div></div></div>`).join('')
 }
 
-// ── ADD ───────────────────────────────────────────────────────────────
+// ── EDIT ──────────────────────────────────────────────────────────────
+function editPromo(id){
+  const p=_cache.find(x=>x.id===id); if(!p) return
+  _editId=id
+  closeSheet()
+
+  // 폼 채우기
+  document.getElementById('a-name').value = p.name
+  document.getElementById('a-pf').value   = p.platform
+  document.getElementById('a-mgr').value  = p.manager||''
+  document.getElementById('a-dl').value   = p.deadline
+  document.getElementById('a-st').value   = p.start_date
+  document.getElementById('a-en').value   = p.end_date
+  document.getElementById('a-disc').value   = p.disc_rate||''
+  document.getElementById('a-coupon').value = p.coupon_rate||''
+  document.getElementById('a-fee').value    = p.fee_rate||''
+  document.getElementById('a-note').value   = p.note||''
+
+  // 기존 이미지 미리보기
+  if(p.image_url){
+    document.getElementById('img-preview-img').src = p.image_url
+    document.getElementById('img-preview').style.display='block'
+    document.getElementById('dropzone').querySelector('.img-dropzone-txt').textContent='이미지 첨부됨 (교체하려면 탭)'
+  }else{
+    removeImg()
+  }
+
+  // UI 업데이트
+  document.querySelector('#s-add .topbar-title').textContent='기획전 수정'
+  document.getElementById('add-btn').textContent='수정 완료'
+  document.getElementById('overlap-warn').style.display='none'
+  go('add')
+}
+
+function resetAddForm(){
+  _editId=null
+  ;['a-name','a-st','a-en','a-dl','a-disc','a-coupon','a-fee','a-mgr','a-note'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=''})
+  removeImg()
+  document.getElementById('overlap-warn').style.display='none'
+  document.querySelector('#s-add .topbar-title').textContent='기획전 등록'
+  document.getElementById('add-btn').textContent='결재 요청 보내기'
+}
+
+// ── ADD / UPDATE ───────────────────────────────────────────────────────
 async function addPromo(){
   const name=document.getElementById('a-name').value.trim()
   const st=document.getElementById('a-st').value
   const en=document.getElementById('a-en').value
   const dl=document.getElementById('a-dl').value
   if(!name||!st||!en||!dl){toast('기획전명, 기간, 신청마감일을 입력해 주세요');return}
-  const btn=document.getElementById('add-btn');btn.disabled=true;btn.textContent='등록 중...'
+  const btn=document.getElementById('add-btn');btn.disabled=true;btn.textContent=_editId?'저장 중...':'등록 중...'
   const prog=document.getElementById('upload-progress')
   try{
-    let imgUrl=null
-    if(_imgFile){prog.style.display='block';imgUrl=await uploadImg();prog.style.display='none'}
-    const{error}=await sb.from('promotions').insert({
-      name,platform:document.getElementById('a-pf').value,
-      start_date:st,end_date:en,deadline:dl,
+    // 이미지: 새 파일이 있으면 업로드, 없으면 기존 URL 유지
+    let imgUrl = _editId ? (_cache.find(x=>x.id===_editId)?.image_url||null) : null
+    if(_imgFile){ prog.style.display='block'; imgUrl=await uploadImg(); prog.style.display='none' }
+
+    const payload={
+      name, platform:document.getElementById('a-pf').value,
+      start_date:st, end_date:en, deadline:dl,
       disc_rate:parseInt(document.getElementById('a-disc').value)||0,
       coupon_rate:parseInt(document.getElementById('a-coupon').value)||0,
       fee_rate:parseInt(document.getElementById('a-fee').value)||0,
       manager:document.getElementById('a-mgr').value.trim(),
       note:document.getElementById('a-note').value.trim(),
-      image_url:imgUrl,status:'결재대기',approval:'대기'
-    })
-    if(error)throw new Error(error.message)
-    ;['a-name','a-st','a-en','a-dl','a-disc','a-coupon','a-fee','a-mgr','a-note'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=''})
-    removeImg()
-    document.getElementById('overlap-warn').style.display='none'
-    await loadData();toast(`✓ "${name}" 등록 완료!`);go('approval')
+      image_url:imgUrl
+    }
+
+    if(_editId){
+      // 수정 모드 — 상태는 그대로 유지
+      const{error}=await sb.from('promotions').update(payload).eq('id',_editId)
+      if(error)throw new Error(error.message)
+      toast(`✓ "${name}" 수정 완료!`)
+    }else{
+      // 신규 등록
+      const{error}=await sb.from('promotions').insert({...payload,status:'결재대기',approval:'대기'})
+      if(error)throw new Error(error.message)
+      toast(`✓ "${name}" 등록 완료!`)
+    }
+
+    resetAddForm()
+    await loadData()
+    go('approval')
   }catch(e){console.error(e);toast('오류: '+e.message)}
-  finally{btn.disabled=false;btn.textContent='결재 요청 보내기';prog.style.display='none'}
+  finally{btn.disabled=false;btn.textContent=_editId?'수정 완료':'결재 요청 보내기';prog.style.display='none'}
 }
 
 // ── DETAIL SHEET ──────────────────────────────────────────────────────
@@ -904,7 +962,7 @@ function openSheet(id){
     <div class="sheet-dr"><span class="sk">총 할인율</span><span class="sv" style="color:var(--red)">${tot}%</span></div>
     <div class="sheet-dr"><span class="sk">플랫폼 수수료</span><span class="sv">${p.fee_rate||0}%</span></div>
     ${p.note?`<div style="height:8px"></div><div class="sheet-note">💬 ${p.note}</div>`:'<div style="height:16px"></div>'}
-    <div class="sheet-acts"><button class="sa-close" onclick="closeSheet()">닫기</button><button class="sa-del" onclick="delPromo('${p.id}')">삭제</button></div>`
+    <div class="sheet-acts"><button class="sa-edit" onclick="editPromo('${p.id}')">수정하기</button><button class="sa-close" onclick="closeSheet()">닫기</button><button class="sa-del" onclick="delPromo('${p.id}')">삭제</button></div>`
   document.getElementById('sheet-bg').classList.add('on')
 }
 function openImgFull(url){
