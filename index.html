@@ -378,7 +378,7 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
   <div class="screen on" id="s-home">
     <div class="topbar">
       <div class="topbar-title">기획전 관리</div>
-      <div class="topbar-right"><span class="user-pill" id="user-pill">...</span><button class="topbar-btn" onclick="go('add')">+ 등록</button></div>
+      <div class="topbar-right"><span class="user-pill" id="user-pill">...</span><button class="topbar-btn" onclick="go('add')">+ 등록</button><button onclick="if(confirm('로그아웃 할까요?'))doSignOut()" style="background:transparent;border:none;font-size:12px;font-weight:600;color:var(--t2);font-family:inherit;cursor:pointer;padding:6px 4px">로그아웃</button></div>
     </div>
     <div class="hero"><div class="hero-g" id="hero-date"></div><div class="hero-t" id="hero-msg"></div></div>
     <div class="stat-scroll" id="stat-row"></div>
@@ -476,7 +476,7 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
           <div><div class="cr-lbl">최종 판매가</div><div class="cr-val" id="r-price">-</div></div>
           <div><div class="cr-lbl">실수령액</div><div class="cr-val" id="r-net">-</div></div>
           <div><div class="cr-lbl">기획전 할인</div><div class="cr-val ok" id="r-sale">-</div></div>
-          <div><div class="cr-lbl">쿠폰 할인</div><div class="cr-val ok" id="r-coupon-amt">-<div class="cr-note" id="r-coupon-note"></div></div></div>
+          <div><div class="cr-lbl">쿠폰 할인</div><div class="cr-val ok" id="r-coupon-amt">-</div><div class="cr-note" id="r-coupon-note"></div></div>
           <div><div class="cr-lbl">총 할인율</div><div class="cr-val" id="r-disc">-</div></div>
           <div><div class="cr-lbl">총 절약금액</div><div class="cr-val ok" id="r-saved">-</div></div>
         </div>
