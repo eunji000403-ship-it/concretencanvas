@@ -763,7 +763,7 @@ function go(id){
   const t=document.getElementById('tab-'+id);if(t)t.classList.add('on')
   window.scrollTo(0,0);curScreen=id
   if(id==='home')renderHome()
-  if(id==='calendar')renderCal()
+  if(id==='calendar'){loadData().then(()=>renderCal());}
   if(id==='timeline')renderTl()
   if(id==='approval')renderApv()
   if(id==='products')renderProducts()
@@ -805,8 +805,8 @@ function getEventBars(week){
   const laneEnd=[],bars=[]
   for(const p of ovlp){
     const vs=p.start_date<ws?ws:p.start_date,ve=p.end_date>we?we:p.end_date
-    const si=week.findIndex(c=>c.date===vs),ei=week.findIndex(c=>c.date===ve)
-    if(si===-1||ei===-1)continue
+    const si=week.findIndex(c=>c.date>=vs),ei=week.findLastIndex(c=>c.date<=ve)
+    if(si===-1||ei===-1||si>ei)continue
     let lane=0
     while(lane<3&&laneEnd[lane]&&laneEnd[lane]>=vs)lane++
     if(lane>=3)continue
@@ -937,7 +937,7 @@ async function doApprove(id,ok){
     if(error)throw new Error(error.message)
     const p=_cache.find(x=>x.id===id)
     if(p){p.approval=ok?'승인':'미참여';p.status=ok?'신청완료':'신청전'}
-    updateBadge();renderApv();toast(ok?'✓ 참여 승인 완료':'미참여 처리 완료')
+    updateBadge();renderApv();renderCal();toast(ok?'✓ 참여 승인 완료':'미참여 처리 완료')
   }catch(e){console.error(e);toast('오류: '+e.message)}
 }
 async function approveUser(uid,name){
