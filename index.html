@@ -9,8 +9,8 @@
 
 <!-- ★★★ Supabase 키를 여기에 붙여넣으세요 ★★★ -->
 <script>
-  const SUPABASE_URL = 'https://ffmsbhbgypwlqxwgifsm.supabase.co'
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZmbXNiaGJneXB3bHF4d2dpZnNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MzAzMzMsImV4cCI6MjA5MTIwNjMzM30.TVlcnmjs6hjNGvCBz0KDASN4AtIMoAmlKY6xmh50Kxw'
+const SUPABASE_URL = 'https://여기에붙여넣기.supabase.co'
+const SUPABASE_KEY = 'eyJ여기에붙여넣기'
 </script>
 
 <style>
@@ -280,6 +280,51 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 
 select option{font-family:'Pretendard',sans-serif;}
 input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
+
+/* ── PRODUCT MANAGEMENT ─── */
+.prod-card{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:10px;}
+.prod-card-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 12px;cursor:pointer;border-bottom:1px solid transparent;}
+.prod-card-header.open{border-bottom-color:var(--bg);}
+.prod-card-left{display:flex;align-items:center;gap:12px;}
+.prod-thumb{width:44px;height:44px;border-radius:10px;background:var(--bg);object-fit:cover;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.prod-thumb svg{width:20px;height:20px;color:var(--t3);}
+.prod-name{font-size:15px;font-weight:700;letter-spacing:-.02em;}
+.prod-cat{font-size:12px;color:var(--t3);margin-top:2px;}
+.prod-arrow svg{width:16px;height:16px;color:var(--t3);transition:transform .2s;}
+.prod-arrow.open svg{transform:rotate(90deg);}
+.prod-pf-table{display:none;padding:0 16px 12px;}
+.prod-pf-table.open{display:block;}
+.pf-head{display:grid;grid-template-columns:72px 1fr 1fr 1fr 32px;gap:6px;padding:6px 0 8px;border-bottom:1px solid var(--bg);margin-bottom:2px;}
+.pf-head span{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.04em;}
+.pf-row{display:grid;grid-template-columns:72px 1fr 1fr 1fr 32px;gap:6px;align-items:center;padding:8px 0;border-bottom:1px solid var(--bg);}
+.pf-row:last-child{border-bottom:none;}
+.pf-row.inactive{opacity:.35;}
+.pf-nm{font-size:12px;font-weight:700;color:var(--t2);}
+.pf-price{font-size:13px;font-weight:700;color:var(--t1);}
+.pf-price.red{color:var(--red);}
+.pf-cpn{font-size:11px;font-weight:600;color:var(--blue);background:var(--blue-l);padding:2px 7px;border-radius:20px;white-space:nowrap;}
+.pf-cpn-none{font-size:11px;color:var(--t3);}
+.pf-edit-btn{width:28px;height:28px;border-radius:8px;border:none;background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pf-edit-btn svg{width:14px;height:14px;color:var(--t2);}
+/* 모달 */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:flex-end;}
+.modal-bg.on{display:flex;}
+.modal-sheet{background:var(--white);border-radius:24px 24px 0 0;width:100%;max-height:90vh;overflow-y:auto;padding-bottom:calc(var(--safe) + 8px);}
+.modal-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 0;}
+.modal-title{font-size:17px;font-weight:800;letter-spacing:-.03em;padding:16px 20px 2px;}
+.modal-sub{font-size:12px;color:var(--t3);padding:0 20px 14px;}
+.modal-sec{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.04em;padding:14px 20px 0;}
+.mf-card{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);margin:10px 20px 0;overflow:hidden;}
+.mf-row{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--bg);gap:10px;}
+.mf-row:last-child{border-bottom:none;}
+.mf-lbl{font-size:14px;font-weight:500;flex-shrink:0;}
+.mf-inp{border:none;background:transparent;outline:none;font-size:14px;font-weight:600;color:var(--t1);text-align:right;flex:1;font-family:inherit;}
+.mf-inp::placeholder{color:var(--t3);font-weight:400;font-size:13px;}
+.mf-unit{font-size:13px;color:var(--t2);flex-shrink:0;}
+.mf-sel{border:none;background:transparent;outline:none;font-size:14px;font-weight:600;color:var(--t1);font-family:inherit;-webkit-appearance:none;cursor:pointer;}
+.modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 20px 4px;}
+.mbtn-c{background:var(--bg);color:var(--t2);border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;}
+.mbtn-s{background:var(--blue);color:#fff;border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}
 </style>
 </head>
 <body>
@@ -466,13 +511,25 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
     <div class="submit-area"><button class="btn-submit" id="add-btn" onclick="addPromo()">결재 요청 보내기</button></div>
   </div>
 
+  <!-- 상품 가격 관리 -->
+  <div class="screen" id="s-products">
+    <div class="topbar">
+      <div class="topbar-title">상품 관리</div>
+      <div class="topbar-right"><button class="topbar-btn" onclick="openProdModal()">+ 상품 추가</button></div>
+    </div>
+    <div style="padding:14px 20px 0">
+      <div style="font-size:12px;color:var(--t2);margin-bottom:14px;line-height:1.6">플랫폼별 판매가와 쿠폰 조건을 한 눈에 확인하고 수정할 수 있어요.</div>
+      <div id="prod-list"></div>
+    </div>
+  </div>
+
   <!-- TAB BAR -->
   <nav class="tabbar">
     <div class="tab on" id="tab-home" onclick="go('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg><span class="tab-lbl">홈</span></div>
     <div class="tab" id="tab-calendar" onclick="go('calendar')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="tab-lbl">캘린더</span></div>
     <div class="tab" id="tab-timeline" onclick="go('timeline')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1" fill="currentColor"/><circle cx="3" cy="12" r="1" fill="currentColor"/><circle cx="3" cy="18" r="1" fill="currentColor"/></svg><span class="tab-lbl">현황</span></div>
     <div class="tab" id="tab-approval" onclick="go('approval')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span class="tab-lbl">결재</span><span class="tab-badge" id="t-badge" style="display:none"></span></div>
-    <div class="tab" id="tab-calc" onclick="go('calc')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="4" y1="9" x2="20" y2="9"/><rect x="8" y="13" width="2" height="2" fill="currentColor" stroke="none" rx="0.5"/><rect x="11" y="13" width="2" height="2" fill="currentColor" stroke="none" rx="0.5"/><rect x="14" y="13" width="2" height="2" fill="currentColor" stroke="none" rx="0.5"/><rect x="8" y="17" width="2" height="2" fill="currentColor" stroke="none" rx="0.5"/><rect x="11" y="17" width="2" height="2" fill="currentColor" stroke="none" rx="0.5"/><rect x="14" y="17" width="2" height="2" fill="currentColor" stroke="none" rx="0.5"/></svg><span class="tab-lbl">계산기</span></div>
+    <div class="tab" id="tab-products" onclick="go('products')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="tab-lbl">상품</span></div>
     <div class="tab" id="tab-add" onclick="go('add')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span class="tab-lbl">등록</span></div>
   </nav>
 </div>
@@ -480,6 +537,57 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
 <!-- 상세 SHEET -->
 <div class="sheet-bg" id="sheet-bg" onclick="closeSheet(event)">
   <div class="sheet" id="sheet"><div class="sheet-handle"></div><div id="sheet-inner"></div></div>
+</div>
+
+<!-- 상품 등록 모달 -->
+<div class="modal-bg" id="prod-modal-bg" onclick="closeProdModal(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="prod-modal-title">상품 추가</div>
+    <div class="modal-sub">상품을 추가하면 플랫폼별 가격을 설정할 수 있어요</div>
+    <div class="mf-card">
+      <div class="mf-row"><span class="mf-lbl">상품명</span><input class="mf-inp" id="pm-name" placeholder="예: 린넨 와이드 팬츠"></div>
+      <div class="mf-row"><span class="mf-lbl">카테고리</span><input class="mf-inp" id="pm-cat" placeholder="예: 하의, 아우터"></div>
+    </div>
+    <div class="modal-btns">
+      <button class="mbtn-c" onclick="closeProdModal()">취소</button>
+      <button class="mbtn-s" onclick="saveProd()">저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- 플랫폼 가격 편집 모달 -->
+<div class="modal-bg" id="price-modal-bg" onclick="closePriceModal(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="price-modal-title">가격 설정</div>
+    <div class="modal-sub" id="price-modal-sub"></div>
+    <div class="modal-sec">판매 가격</div>
+    <div class="mf-card">
+      <div class="mf-row"><span class="mf-lbl">정상가</span><input class="mf-inp" type="number" id="pm-normal" placeholder="89,000"><span class="mf-unit">원</span></div>
+      <div class="mf-row"><span class="mf-lbl">현재 판매가</span><input class="mf-inp" type="number" id="pm-sale" placeholder="정상가와 같으면 비워두세요"><span class="mf-unit">원</span></div>
+    </div>
+    <div class="modal-sec">쿠폰 설정</div>
+    <div class="mf-card">
+      <div class="mf-row"><span class="mf-lbl">쿠폰 할인율</span><input class="mf-inp" type="number" id="pm-cpn-rate" placeholder="10"><span class="mf-unit">%</span></div>
+      <div class="mf-row"><span class="mf-lbl">최대 할인금액</span><input class="mf-inp" type="number" id="pm-cpn-max" placeholder="15,000"><span class="mf-unit">원</span></div>
+      <div class="mf-row"><span class="mf-lbl">최소 구매금액</span><input class="mf-inp" type="number" id="pm-cpn-min" placeholder="50,000"><span class="mf-unit">원</span></div>
+      <div class="mf-row"><span class="mf-lbl">쿠폰 메모</span><input class="mf-inp" id="pm-cpn-note" placeholder="중복 불가, 신규 전용 등"></div>
+    </div>
+    <div class="mf-card" style="margin-top:10px">
+      <div class="mf-row">
+        <span class="mf-lbl">판매 활성화</span>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+          <span id="pm-active-lbl" style="font-size:13px;color:var(--t2)">활성</span>
+          <input type="checkbox" id="pm-active" checked onchange="document.getElementById('pm-active-lbl').textContent=this.checked?'활성':'비활성'" style="width:18px;height:18px;cursor:pointer">
+        </label>
+      </div>
+    </div>
+    <div class="modal-btns">
+      <button class="mbtn-c" onclick="closePriceModal()">취소</button>
+      <button class="mbtn-s" onclick="savePlatformPrice()">저장</button>
+    </div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -596,6 +704,7 @@ function go(id){
   if(id==='calendar')renderCal()
   if(id==='timeline')renderTl()
   if(id==='approval')renderApv()
+  if(id==='products')renderProducts()
   if(id==='add'&&!_editId)resetAddForm()
 }
 
@@ -978,6 +1087,130 @@ async function delPromo(id){
   await sb.from('promotions').delete().eq('id',id)
   _cache=_cache.filter(p=>p.id!==id);updateBadge();closeSheet();toast('삭제되었습니다')
   if(curScreen==='home')renderHome();else if(curScreen==='timeline')renderTl()
+}
+
+// ── PRODUCT MANAGEMENT ────────────────────────────────────────────────
+const PF_LIST = ['무신사','지그재그','29cm','W컨셉','공홈']
+let _products=[], _prices=[]
+let _editProdId=null, _editPriceProductId=null, _editPricePlatform=null
+
+async function loadProducts(){
+  const[{data:prods},{data:prices}]=await Promise.all([
+    sb.from('products').select('*').order('created_at'),
+    sb.from('platform_prices').select('*')
+  ])
+  _products=prods||[]; _prices=prices||[]
+}
+
+async function renderProducts(){
+  await loadProducts()
+  const el=document.getElementById('prod-list')
+  if(!_products.length){
+    el.innerHTML=`<div class="empty"><div class="empty-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div><div class="empty-txt">등록된 상품이 없어요<br>상품을 추가하고 플랫폼별 가격을 설정해 보세요</div></div>`
+    return
+  }
+  el.innerHTML=_products.map(p=>{
+    const pp=_prices.filter(x=>x.product_id===p.id)
+    return`<div class="prod-card">
+      <div class="prod-card-header" onclick="toggleProd('${p.id}',this)" id="ph-${p.id}">
+        <div class="prod-card-left">
+          ${p.image_url?`<img src="${p.image_url}" class="prod-thumb" style="object-fit:cover">`:`<div class="prod-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>`}
+          <div><div class="prod-name">${p.name}</div><div class="prod-cat">${p.category||'카테고리 없음'} · ${pp.filter(x=>x.is_active).length}개 플랫폼 판매 중</div></div>
+        </div>
+        <div class="prod-arrow" id="pa-${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </div>
+      <div class="prod-pf-table" id="pt-${p.id}">
+        <div class="pf-head"><span>플랫폼</span><span>정상가</span><span>판매가</span><span>쿠폰</span><span></span></div>
+        ${PF_LIST.map(pf=>{
+          const pr=pp.find(x=>x.platform===pf)
+          return`<div class="pf-row${pr&&!pr.is_active?' inactive':''}">
+            <div class="pf-nm">${pf}</div>
+            <div class="pf-price">${pr?.normal_price?(pr.normal_price/1).toLocaleString():'—'}</div>
+            <div class="pf-price${pr?.sale_price&&pr.sale_price!==pr.normal_price?' red':''}">${pr?.sale_price?pr.sale_price.toLocaleString():pr?.normal_price?pr.normal_price.toLocaleString():'—'}</div>
+            <div>${pr?.coupon_rate?`<span class="pf-cpn">${pr.coupon_rate}%${pr.coupon_max?` / 최대 ${(pr.coupon_max/1).toLocaleString()}원`:''}</span>`:`<span class="pf-cpn-none">없음</span>`}</div>
+            <div><button class="pf-edit-btn" onclick="openPriceModal('${p.id}','${pf}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button></div>
+          </div>`
+        }).join('')}
+      </div>
+    </div>`
+  }).join('')
+}
+
+function toggleProd(id, header){
+  const table=document.getElementById('pt-'+id)
+  const arrow=document.getElementById('pa-'+id)
+  const isOpen=table.classList.contains('open')
+  table.classList.toggle('open',!isOpen)
+  arrow.classList.toggle('open',!isOpen)
+  header.classList.toggle('open',!isOpen)
+}
+
+// 상품 추가 모달
+function openProdModal(id){
+  _editProdId=id||null
+  const p=id?_products.find(x=>x.id===id):null
+  document.getElementById('prod-modal-title').textContent=p?'상품 수정':'상품 추가'
+  document.getElementById('pm-name').value=p?.name||''
+  document.getElementById('pm-cat').value=p?.category||''
+  document.getElementById('prod-modal-bg').classList.add('on')
+}
+function closeProdModal(e){if(!e||e.target===document.getElementById('prod-modal-bg'))document.getElementById('prod-modal-bg').classList.remove('on')}
+
+async function saveProd(){
+  const name=document.getElementById('pm-name').value.trim()
+  if(!name){toast('상품명을 입력해 주세요');return}
+  const payload={name,category:document.getElementById('pm-cat').value.trim()}
+  if(_editProdId){
+    await sb.from('products').update(payload).eq('id',_editProdId)
+  }else{
+    await sb.from('products').insert(payload)
+  }
+  closeProdModal()
+  toast(`✓ "${name}" ${_editProdId?'수정':'추가'} 완료!`)
+  await renderProducts()
+}
+
+// 플랫폼 가격 편집 모달
+function openPriceModal(productId, platform){
+  _editPriceProductId=productId; _editPricePlatform=platform
+  const prod=_products.find(x=>x.id===productId)
+  const pr=_prices.find(x=>x.product_id===productId&&x.platform===platform)
+  document.getElementById('price-modal-title').textContent=`${platform} 가격 설정`
+  document.getElementById('price-modal-sub').textContent=prod?.name||''
+  document.getElementById('pm-normal').value=pr?.normal_price||''
+  document.getElementById('pm-sale').value=pr?.sale_price||''
+  document.getElementById('pm-cpn-rate').value=pr?.coupon_rate||''
+  document.getElementById('pm-cpn-max').value=pr?.coupon_max||''
+  document.getElementById('pm-cpn-min').value=pr?.coupon_min_buy||''
+  document.getElementById('pm-cpn-note').value=pr?.coupon_note||''
+  const active=pr?.is_active!==false
+  document.getElementById('pm-active').checked=active
+  document.getElementById('pm-active-lbl').textContent=active?'활성':'비활성'
+  document.getElementById('price-modal-bg').classList.add('on')
+}
+function closePriceModal(e){if(!e||e.target===document.getElementById('price-modal-bg'))document.getElementById('price-modal-bg').classList.remove('on')}
+
+async function savePlatformPrice(){
+  const payload={
+    product_id:_editPriceProductId, platform:_editPricePlatform,
+    normal_price:parseInt(document.getElementById('pm-normal').value)||0,
+    sale_price:parseInt(document.getElementById('pm-sale').value)||0,
+    coupon_rate:parseInt(document.getElementById('pm-cpn-rate').value)||0,
+    coupon_max:parseInt(document.getElementById('pm-cpn-max').value)||0,
+    coupon_min_buy:parseInt(document.getElementById('pm-cpn-min').value)||0,
+    coupon_note:document.getElementById('pm-cpn-note').value.trim(),
+    is_active:document.getElementById('pm-active').checked
+  }
+  if(!payload.sale_price)payload.sale_price=payload.normal_price
+  const existing=_prices.find(x=>x.product_id===_editPriceProductId&&x.platform===_editPricePlatform)
+  if(existing){
+    await sb.from('platform_prices').update(payload).eq('id',existing.id)
+  }else{
+    await sb.from('platform_prices').insert(payload)
+  }
+  closePriceModal()
+  toast(`✓ ${_editPricePlatform} 가격 저장 완료!`)
+  await renderProducts()
 }
 
 // ── UTILS ─────────────────────────────────────────────────────────────
