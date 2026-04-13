@@ -805,8 +805,9 @@ function getEventBars(week){
   const laneEnd=[],bars=[]
   for(const p of ovlp){
     const vs=p.start_date<ws?ws:p.start_date,ve=p.end_date>we?we:p.end_date
-    const si=week.findIndex(c=>c.date>=vs),ei=week.findLastIndex(c=>c.date<=ve)
-    if(si===-1||ei===-1||si>ei)continue
+    const si=week.findIndex(c=>c.date>=vs&&c.date<=ve)
+    const ei=week.reduce((acc,c,i)=>c.date>=vs&&c.date<=ve?i:acc,-1)
+    if(si===-1||ei===-1)continue
     let lane=0
     while(lane<3&&laneEnd[lane]&&laneEnd[lane]>=vs)lane++
     if(lane>=3)continue
