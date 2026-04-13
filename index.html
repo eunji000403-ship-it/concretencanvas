@@ -7,7 +7,6 @@
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- ★★★ Supabase 키를 여기에 붙여넣으세요 ★★★ -->
 <script>
   const SUPABASE_URL = 'https://ffmsbhbgypwlqxwgifsm.supabase.co'
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZmbXNiaGJneXB3bHF4d2dpZnNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MzAzMzMsImV4cCI6MjA5MTIwNjMzM30.TVlcnmjs6hjNGvCBz0KDASN4AtIMoAmlKY6xmh50Kxw'
@@ -17,7 +16,7 @@
 :root{
   --bg:#F2F4F6;--white:#fff;--blue:#3182F6;--blue-l:#EBF3FE;
   --t1:#191F28;--t2:#6B7684;--t3:#B0B8C1;--border:#E5E8EB;
-  --red:#E8504A;--red-bg:#FFF0F0;
+  --red:#E8504A;--red-bg:#FFF0F0;--green:#27AE60;--green-l:#E8F8EE;
   --sh:0 2px 12px rgba(0,0,0,.06);--sh2:0 4px 20px rgba(0,0,0,.10);
   --r:16px;--rsm:10px;
   --th:64px;--safe:env(safe-area-inset-bottom,0px);
@@ -96,7 +95,8 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .chip-appl{background:var(--bg);color:var(--t2);border:1px solid var(--border);}
 .chip-active{background:var(--blue-l);color:var(--blue);}
 .chip-done{background:var(--bg);color:var(--t3);}
-.chip-before{background:var(--bg);color:var(--t3);}
+.chip-before{background:var(--green-l);color:var(--green);}
+.chip-upcoming{background:var(--green-l);color:var(--green);}
 .pf-tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--t2);}
 .pf-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 .prog-wrap{height:4px;background:var(--bg);border-radius:2px;overflow:hidden;margin:5px 0 2px;}
@@ -153,22 +153,16 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .btn-detail-sm{background:transparent;border:none;color:var(--t3);font-size:11px;font-weight:600;font-family:inherit;cursor:pointer;padding:4px 0 4px 8px;flex-shrink:0;white-space:nowrap;display:flex;align-items:center;gap:3px;}
 .btn-detail-sm:active{color:var(--t2);}
 .btn-detail-sm svg{width:12px;height:12px;}
-
-/* 기간 */
 .apv-period-row{display:flex;align-items:center;gap:6px;background:var(--bg);border-radius:var(--rsm);padding:9px 13px;margin-bottom:10px;}
 .apv-period-label{font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.04em;margin-right:2px;flex-shrink:0;}
 .apv-period-val{font-size:13px;font-weight:700;letter-spacing:-.01em;color:var(--t1);}
 .apv-period-sep{color:var(--t3);font-size:13px;}
-
-/* 할인 */
 .apv-discount-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
 .apv-disc-box{border-radius:var(--rsm);padding:11px 13px;background:var(--bg);}
 .apv-disc-lbl{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;color:var(--t3);}
 .apv-disc-val{font-size:22px;font-weight:900;letter-spacing:-.03em;color:var(--t1);}
 .apv-disc-sub{font-size:11px;margin-top:2px;color:var(--t3);}
 .apv-note{font-size:13px;color:var(--t2);background:var(--bg);border-radius:var(--rsm);padding:10px 13px;margin-bottom:12px;line-height:1.6;}
-
-/* 버튼 2개 */
 .apv-btn-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .btn-yes{background:var(--blue);color:#fff;border:none;border-radius:var(--rsm);padding:13px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;letter-spacing:-.01em;}
 .btn-no{background:var(--bg);color:var(--t2);border:none;border-radius:var(--rsm);padding:13px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;}
@@ -216,7 +210,6 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .f-ta{width:100%;border:none;background:transparent;outline:none;font-size:14px;color:var(--t1);font-family:inherit;resize:none;line-height:1.7;min-height:60px;}
 .f-ta::placeholder{color:var(--t3);}
 .f-unit{font-size:14px;color:var(--t2);flex-shrink:0;}
-/* 이미지 업로드 */
 .img-upload-area{padding:16px 20px;}
 .img-dropzone{border:1.5px dashed var(--border);border-radius:var(--rsm);padding:20px;text-align:center;cursor:pointer;transition:border-color .15s;position:relative;}
 .img-dropzone:hover{border-color:var(--blue);}
@@ -228,7 +221,6 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .img-preview{margin-top:10px;border-radius:var(--rsm);overflow:hidden;position:relative;display:none;}
 .img-preview img{width:100%;max-height:200px;object-fit:cover;display:block;}
 .img-remove{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;}
-/* 겹침 경고 */
 .overlap-warn{background:var(--bg);border:1px solid var(--border);border-radius:var(--rsm);padding:12px 14px;margin:0 20px 10px;display:none;}
 .overlap-warn-title{font-size:12px;font-weight:700;color:var(--t2);margin-bottom:6px;}
 .overlap-item{font-size:12px;color:var(--t2);padding:5px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
@@ -239,24 +231,21 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .btn-submit:disabled{opacity:.5;}
 .upload-progress{font-size:12px;color:var(--t2);text-align:center;padding:4px;display:none;}
 
-/* ── DETAIL SHEET (large) ─── */
+/* ── DETAIL SHEET ─── */
 .sheet-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:flex-end;}
 .sheet-bg.on{display:flex;}
 .sheet{background:var(--white);border-radius:24px 24px 0 0;width:100%;max-height:92vh;overflow-y:auto;padding-bottom:calc(var(--safe) + 8px);}
 .sheet-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 0;}
 .sheet-pf-row{display:flex;align-items:center;justify-content:space-between;padding:14px 20px 6px;}
 .sheet-name{font-size:20px;font-weight:900;letter-spacing:-.04em;padding:0 20px 12px;line-height:1.2;}
-/* 이미지 */
 .sheet-img{margin:0 20px 14px;border-radius:var(--rsm);overflow:hidden;background:var(--bg);max-height:260px;display:flex;align-items:center;justify-content:center;}
 .sheet-img img{width:100%;object-fit:contain;max-height:260px;display:block;}
 .sheet-img-empty{padding:24px;display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--t3);}
 .sheet-img-empty svg{width:28px;height:28px;opacity:.35;}
 .sheet-img-empty span{font-size:12px;}
-/* 기간 */
 .sheet-period{display:flex;align-items:center;gap:6px;padding:0 20px 14px;}
 .sheet-period-badge{background:var(--bg);border-radius:20px;padding:6px 14px;font-size:13px;font-weight:700;letter-spacing:-.02em;}
 .sheet-period-arrow{font-size:16px;color:var(--t3);}
-/* 할인 분리 */
 .sheet-disc-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 20px 14px;}
 .sheet-disc-box{border-radius:var(--rsm);padding:14px;background:var(--bg);}
 .sheet-disc-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;color:var(--t3);}
@@ -266,11 +255,14 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .sheet-dr:last-of-type{border-bottom:none;}
 .sk{font-size:14px;color:var(--t2);}
 .sv{font-size:14px;font-weight:700;}
-/* 진행 바 */
 .sheet-prog{padding:0 20px 14px;}
 .sheet-note{background:var(--bg);border-radius:var(--rsm);padding:13px 16px;margin:0 20px 14px;font-size:13px;color:var(--t2);line-height:1.7;}
-.sheet-acts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:0 20px 4px;}
+/* 버튼 4개 그리드 */
+.sheet-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 20px 4px;}
+.sheet-acts-full{display:grid;grid-template-columns:1fr;gap:8px;padding:0 20px 4px;}
+.sheet-acts-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:0 20px 4px;}
 .sa-edit{background:var(--blue);color:#fff;border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}
+.sa-submit{background:var(--green);color:#fff;border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}
 .sa-close{background:var(--bg);color:var(--t2);border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;}
 .sa-del{background:var(--bg);color:var(--t2);border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}
 
@@ -290,8 +282,14 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
 .prod-thumb svg{width:20px;height:20px;color:var(--t3);}
 .prod-name{font-size:15px;font-weight:700;letter-spacing:-.02em;}
 .prod-cat{font-size:12px;color:var(--t3);margin-top:2px;}
+.prod-card-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
 .prod-arrow svg{width:16px;height:16px;color:var(--t3);transition:transform .2s;}
 .prod-arrow.open svg{transform:rotate(90deg);}
+/* 상품 수정/삭제 버튼 */
+.prod-action-btn{width:32px;height:32px;border-radius:9px;border:none;background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.prod-action-btn svg{width:15px;height:15px;color:var(--t2);}
+.prod-del-btn{width:32px;height:32px;border-radius:9px;border:none;background:var(--red-bg);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.prod-del-btn svg{width:15px;height:15px;color:var(--red);}
 .prod-pf-table{display:none;padding:0 16px 12px;}
 .prod-pf-table.open{display:block;}
 .pf-head{display:grid;grid-template-columns:72px 1fr 1fr 1fr 32px;gap:6px;padding:6px 0 8px;border-bottom:1px solid var(--bg);margin-bottom:2px;}
@@ -325,7 +323,7 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
 .modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 20px 4px;}
 .mbtn-c{background:var(--bg);color:var(--t2);border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;}
 .mbtn-s{background:var(--blue);color:#fff;border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}
-/* ── PRODUCT SELECTION IN FORM ─── */
+/* 상품 선택 */
 .prod-select-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bg);cursor:pointer;}
 .prod-select-item:last-child{border-bottom:none;}
 .prod-select-item:active{opacity:.7;}
@@ -336,10 +334,17 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
 .prod-select-name{font-size:14px;font-weight:600;color:var(--t1);flex:1;min-width:0;}
 .prod-select-price{font-size:12px;color:var(--t3);flex-shrink:0;}
 .prod-select-calc{font-size:11px;color:var(--blue);margin-top:2px;}
-
-/* 가격 자동변경 안내 배너 */
 .auto-price-banner{background:var(--blue-l);border-radius:var(--rsm);padding:10px 14px;margin:10px 0 0;display:none;}
 .auto-price-banner-txt{font-size:12px;color:var(--blue);line-height:1.6;font-weight:500;}
+
+/* 프로세스 스텝 배너 */
+.process-banner{display:flex;align-items:center;gap:0;padding:0 20px;margin-bottom:20px;overflow-x:auto;scrollbar-width:none;}
+.process-banner::-webkit-scrollbar{display:none;}
+.ps{flex-shrink:0;font-size:10px;font-weight:700;padding:5px 10px;border-radius:20px;white-space:nowrap;}
+.ps.done{background:var(--bg);color:var(--t3);}
+.ps.cur{background:var(--blue);color:#fff;}
+.ps.next{background:var(--bg);color:var(--t3);}
+.ps-arrow{flex-shrink:0;font-size:12px;color:var(--t3);padding:0 2px;}
 </style>
 </head>
 <body>
@@ -385,6 +390,11 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
       <div class="sec-head"><span class="sec-title">현재 진행 중</span><span class="sec-more" onclick="go('timeline')">전체보기</span></div>
       <div class="card" id="sec-active"></div>
     </div>
+    <!-- 진행 예정 섹션 -->
+    <div class="section" id="sec-upcoming-wrap">
+      <div class="sec-head"><span class="sec-title">진행 예정</span><span class="sec-more" onclick="go('timeline')">전체보기</span></div>
+      <div class="card" id="sec-upcoming"></div>
+    </div>
   </div>
 
   <!-- 캘린더 -->
@@ -418,8 +428,8 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
     <div class="topbar"><div class="topbar-title">타임라인</div></div>
     <div class="tl-seg">
       <button class="seg-btn on" data-s="all" onclick="tlFilter(this)">전체</button>
-      <button class="seg-btn" data-s="신청전" onclick="tlFilter(this)">신청전</button>
       <button class="seg-btn" data-s="결재대기" onclick="tlFilter(this)">결재대기</button>
+      <button class="seg-btn" data-s="신청전" onclick="tlFilter(this)">신청전</button>
       <button class="seg-btn" data-s="신청완료" onclick="tlFilter(this)">신청완료</button>
       <button class="seg-btn" data-s="진행중" onclick="tlFilter(this)">진행중</button>
       <button class="seg-btn" data-s="종료" onclick="tlFilter(this)">종료</button>
@@ -491,7 +501,6 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
         <div class="f-row"><span class="f-lbl">시작일</span><input class="f-inp" type="date" id="a-st" onchange="checkOverlap()"></div>
         <div class="f-row"><span class="f-lbl">종료일</span><input class="f-inp" type="date" id="a-en" onchange="checkOverlap()"></div>
       </div>
-      <!-- 겹침 경고 -->
       <div class="overlap-warn" id="overlap-warn">
         <div class="overlap-warn-title">⚠️ 같은 플랫폼 기획전과 기간이 겹쳐요</div>
         <div id="overlap-list"></div>
@@ -547,14 +556,33 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
     </div>
   </div>
 
-  <!-- TAB BAR -->
+  <!-- TAB BAR — 계산기 탭 추가, 등록 탭 제거 -->
   <nav class="tabbar">
-    <div class="tab on" id="tab-home" onclick="go('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg><span class="tab-lbl">홈</span></div>
-    <div class="tab" id="tab-calendar" onclick="go('calendar')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="tab-lbl">캘린더</span></div>
-    <div class="tab" id="tab-timeline" onclick="go('timeline')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1" fill="currentColor"/><circle cx="3" cy="12" r="1" fill="currentColor"/><circle cx="3" cy="18" r="1" fill="currentColor"/></svg><span class="tab-lbl">현황</span></div>
-    <div class="tab" id="tab-approval" onclick="go('approval')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span class="tab-lbl">결재</span><span class="tab-badge" id="t-badge" style="display:none"></span></div>
-    <div class="tab" id="tab-products" onclick="go('products')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="tab-lbl">상품</span></div>
-    <div class="tab" id="tab-add" onclick="go('add')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span class="tab-lbl">등록</span></div>
+    <div class="tab on" id="tab-home" onclick="go('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>
+      <span class="tab-lbl">홈</span>
+    </div>
+    <div class="tab" id="tab-calendar" onclick="go('calendar')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span class="tab-lbl">캘린더</span>
+    </div>
+    <div class="tab" id="tab-timeline" onclick="go('timeline')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1" fill="currentColor"/><circle cx="3" cy="12" r="1" fill="currentColor"/><circle cx="3" cy="18" r="1" fill="currentColor"/></svg>
+      <span class="tab-lbl">현황</span>
+    </div>
+    <div class="tab" id="tab-approval" onclick="go('approval')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <span class="tab-lbl">결재</span>
+      <span class="tab-badge" id="t-badge" style="display:none"></span>
+    </div>
+    <div class="tab" id="tab-calc" onclick="go('calc')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/><line x1="14" y1="18" x2="16" y2="18"/></svg>
+      <span class="tab-lbl">계산기</span>
+    </div>
+    <div class="tab" id="tab-products" onclick="go('products')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="tab-lbl">상품</span>
+    </div>
   </nav>
 </div>
 
@@ -563,7 +591,7 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
   <div class="sheet" id="sheet"><div class="sheet-handle"></div><div id="sheet-inner"></div></div>
 </div>
 
-<!-- 상품 등록 모달 -->
+<!-- 상품 등록/수정 모달 -->
 <div class="modal-bg" id="prod-modal-bg" onclick="closeProdModal(event)">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
@@ -633,14 +661,22 @@ const PF = {
   '공홈':   { dot:'#888', bg:'#F5F5F5', fee:5, barBg:'rgba(49,130,246,.55)', barTxt:'#fff',
     ico:`<svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>` },
 }
-const CHIP = {'신청전':'chip-before','결재대기':'chip-wait','신청완료':'chip-appl','진행중':'chip-active','종료':'chip-done'}
+
+// 상태 칩 매핑
+const CHIP = {
+  '결재대기':'chip-wait',
+  '신청전':'chip-before',
+  '신청완료':'chip-appl',
+  '진행중':'chip-active',
+  '종료':'chip-done'
+}
+
 const emptyHTML = m => `<div class="empty"><div class="empty-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r=".5" fill="currentColor"/></svg></div><div class="empty-txt">${m}</div></div>`
 
 let _cache=[], _user=null, _profile=null, curScreen='home'
 let calY=today.getFullYear(), calM=today.getMonth(), calPf='all', tlF='all'
 let _imgFile=null, _editId=null
 
-// ── DATE FORMAT: YYYY-MM-DD → MM/DD ───────────────────────────────────
 function fmtDate(s){ if(!s)return'-'; const[,m,d]=s.split('-'); return `${parseInt(m)}/${parseInt(d)}` }
 function dStr(y,m,d){return`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`}
 
@@ -699,23 +735,27 @@ async function loadData(){
   const{data}=await sb.from('promotions').select('*').order('created_at',{ascending:false})
   _cache=data||[]; autoStatus(); updateBadge()
 }
+
 function autoStatus(){
   _cache.forEach(async p=>{
-    if(p.approval!=='승인')return
+    // 승인된 기획전만 날짜 자동 전환
+    if(p.approval!=='승인') return
+    // 이미 종료 상태면 스킵
+    if(p.status==='종료') return
+
     let ns=p.status
-    if(todayStr>=p.start_date&&todayStr<=p.end_date)ns='진행중'
-    if(todayStr>p.end_date)ns='종료'
+    if(todayStr>=p.start_date && todayStr<=p.end_date) ns='진행중'
+    if(todayStr>p.end_date) ns='종료'
+
     if(ns!==p.status){
       await sb.from('promotions').update({status:ns}).eq('id',p.id)
       p.status=ns
-      // 가격 자동 변경
       if(ns==='진행중') await applyPromoPrice(p)
       if(ns==='종료')   await revertPromoPrice(p)
     }
   })
 }
 
-// 기획전 시작 → 할인가 적용
 async function applyPromoPrice(promo){
   if(!promo.disc_rate) return
   const{data:links}=await sb.from('promotion_products').select('product_id').eq('promotion_id',promo.id)
@@ -732,7 +772,6 @@ async function applyPromoPrice(promo){
   }
 }
 
-// 기획전 종료 → 원래 가격으로 복원
 async function revertPromoPrice(promo){
   const{data:links}=await sb.from('promotion_products').select('product_id').eq('promotion_id',promo.id)
   if(!links?.length) return
@@ -746,6 +785,7 @@ async function revertPromoPrice(promo){
     }).eq('id',pr.id)
   }
 }
+
 function subscribeRT(){
   sb.channel('rt').on('postgres_changes',{event:'*',schema:'public',table:'promotions'},async()=>{
     await loadData()
@@ -774,34 +814,75 @@ function go(id){
 function renderHome(){
   const d=_cache,now=new Date(),days=['일','월','화','수','목','금','토']
   document.getElementById('hero-date').textContent=`${now.getFullYear()}년 ${now.getMonth()+1}월 ${now.getDate()}일 (${days[now.getDay()]})`
-  const wN=d.filter(p=>p.approval==='대기').length,aN=d.filter(p=>p.status==='진행중').length
-  document.getElementById('hero-msg').innerHTML=wN?`결재 대기 <span>${wN}건</span>이 있어요`:aN?`기획전 <span>${aN}개</span>가 진행 중이에요`:`오늘도 좋은 하루 되세요`
+  const wN=d.filter(p=>p.approval==='대기').length
+  const aN=d.filter(p=>p.status==='진행중').length
+  const upN=d.filter(p=>p.approval==='승인'&&(p.status==='신청전'||p.status==='신청완료')).length
+  document.getElementById('hero-msg').innerHTML=
+    wN?`결재 대기 <span>${wN}건</span>이 있어요`:
+    aN?`기획전 <span>${aN}개</span>가 진행 중이에요`:
+    upN?`진행 예정 기획전 <span>${upN}개</span>가 있어요`:
+    `오늘도 좋은 하루 되세요`
+
   const m=now.getMonth(),y=now.getFullYear()
   const dN=d.filter(p=>{if(p.status!=='종료')return false;const e=new Date(p.end_date);return e.getMonth()===m&&e.getFullYear()===y}).length
+
   document.getElementById('stat-row').innerHTML=[
     {lbl:'전체',val:d.length,sub:'기획전',hi:true},
     {lbl:'결재 대기',val:wN,sub:'승인 필요'},
     {lbl:'진행 중',val:aN,sub:'현재 활성'},
-    {lbl:'이번달 종료',val:dN,sub:'완료'},
+    {lbl:'진행 예정',val:upN,sub:'승인 완료'},
   ].map(s=>`<div class="stat-tile${s.hi?' hi':''}"><div class="slbl">${s.lbl}</div><div class="snum">${s.val}</div><div class="ssub">${s.sub}</div></div>`).join('')
+
+  // 결재 대기
   const pend=d.filter(p=>p.approval==='대기')
   document.getElementById('sec-pend-wrap').style.display=pend.length?'':'none'
   if(pend.length)document.getElementById('sec-pend').innerHTML=pend.map(p=>{
     const pf=PF[p.platform]||PF['공홈'],dd=Math.ceil((new Date(p.deadline)-new Date())/86400000)
-    return`<div class="row" onclick="openSheet('${p.id}')"><div class="row-ico" style="background:#F5F5F5">${pf.ico}</div><div class="row-body"><div class="row-title">${p.name}</div><div class="row-sub"><span class="pf-tag"><span class="pf-dot" style="background:var(--t3)"></span>${p.platform}</span> · 마감 <strong style="color:${dd<=3?'var(--red)':'var(--t2)'}">${dd>0?'D-'+dd:dd===0?'D-Day':'지남'}</strong></div></div><div class="row-right"><span class="chip chip-wait">결재대기</span><div class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div></div></div>`}).join('')
+    return`<div class="row" onclick="openSheet('${p.id}')"><div class="row-ico" style="background:#F5F5F5">${pf.ico}</div><div class="row-body"><div class="row-title">${p.name}</div><div class="row-sub"><span class="pf-tag"><span class="pf-dot" style="background:var(--t3)"></span>${p.platform}</span> · 마감 <strong style="color:${dd<=3?'var(--red)':'var(--t2)'}">${dd>0?'D-'+dd:dd===0?'D-Day':'지남'}</strong></div></div><div class="row-right"><span class="chip chip-wait">결재대기</span><div class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div></div></div>`
+  }).join('')
+
+  // 진행 중
   const act=d.filter(p=>p.status==='진행중')
   document.getElementById('sec-active').innerHTML=!act.length?emptyHTML('진행 중인 기획전이 없어요'):act.map(p=>{
-    const pf=PF[p.platform]||PF['공홈'],pct=Math.min(100,Math.max(0,Math.round((new Date()-new Date(p.start_date))/(new Date(p.end_date)-new Date(p.start_date)||1)*100)))
-    return`<div class="row" onclick="openSheet('${p.id}')"><div class="row-ico" style="background:#F5F5F5">${pf.ico}</div><div class="row-body"><div class="row-title">${p.name}</div><div class="prog-wrap"><div class="prog-fill" style="width:${pct}%;background:var(--blue)"></div></div><div style="font-size:11px;color:var(--t3);margin-top:1px">${p.start_date} → ${p.end_date}</div></div><div class="row-right"><span class="chip chip-active">${pct}%</span><div class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div></div></div>`}).join('')
+    const pf=PF[p.platform]||PF['공홈']
+    const pct=Math.min(100,Math.max(0,Math.round((new Date()-new Date(p.start_date))/(new Date(p.end_date)-new Date(p.start_date)||1)*100)))
+    return`<div class="row" onclick="openSheet('${p.id}')"><div class="row-ico" style="background:#F5F5F5">${pf.ico}</div><div class="row-body"><div class="row-title">${p.name}</div><div class="prog-wrap"><div class="prog-fill" style="width:${pct}%;background:var(--blue)"></div></div><div style="font-size:11px;color:var(--t3);margin-top:1px">${p.start_date} → ${p.end_date}</div></div><div class="row-right"><span class="chip chip-active">${pct}%</span><div class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div></div></div>`
+  }).join('')
+
+  // ── 진행 예정 (승인 완료, 아직 시작 안 함) ──
+  const upcoming=d.filter(p=>p.approval==='승인'&&(p.status==='신청전'||p.status==='신청완료')&&p.start_date>todayStr)
+    .sort((a,b)=>a.start_date<b.start_date?-1:1)
+  const upWrap=document.getElementById('sec-upcoming-wrap')
+  if(!upcoming.length){
+    upWrap.style.display='none'
+  }else{
+    upWrap.style.display=''
+    document.getElementById('sec-upcoming').innerHTML=upcoming.map(p=>{
+      const pf=PF[p.platform]||PF['공홈']
+      const daysLeft=Math.ceil((new Date(p.start_date)-new Date())/86400000)
+      return`<div class="row" onclick="openSheet('${p.id}')">
+        <div class="row-ico" style="background:#F5F5F5">${pf.ico}</div>
+        <div class="row-body">
+          <div class="row-title">${p.name}</div>
+          <div class="row-sub"><span class="pf-tag"><span class="pf-dot" style="background:var(--t3)"></span>${p.platform}</span> · 시작까지 <strong style="color:var(--green)">D-${daysLeft}</strong></div>
+        </div>
+        <div class="row-right">
+          <span class="chip chip-before">${p.status}</span>
+          <div class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </div>`
+    }).join('')
+  }
 }
 
 // ── CALENDAR ──────────────────────────────────────────────────────────
 function calPfToggle(btn){document.querySelectorAll('.pf-btn[data-p]').forEach(b=>b.classList.remove('on'));btn.classList.add('on');calPf=btn.dataset.p;renderCal()}
 function calPrev(){if(calM===0){calM=11;calY--}else calM--;renderCal()}
 function calNext(){if(calM===11){calM=0;calY++}else calM++;renderCal()}
+
 function getEventBars(week){
   const ws=week[0].date,we=week[6].date
-  const ovlp=_cache.filter(p=>(calPf==='all'||p.platform===calPf)&&p.start_date<=we&&p.end_date>=ws).sort((a,b)=>a.start_date<b.start_date?-1:1)
+  const ovlp=_cache.filter(p=>(calPf==='all'||p.platform===calPf)&&p.approval==='승인'&&p.start_date<=we&&p.end_date>=ws).sort((a,b)=>a.start_date<b.start_date?-1:1)
   const laneEnd=[],bars=[]
   for(const p of ovlp){
     const vs=p.start_date<ws?ws:p.start_date,ve=p.end_date>we?we:p.end_date
@@ -816,6 +897,7 @@ function getEventBars(week){
   }
   return bars
 }
+
 function renderCal(){
   document.getElementById('cal-month').textContent=`${calY}년 ${calM+1}월`
   const first=new Date(calY,calM,1).getDay(),dim=new Date(calY,calM+1,0).getDate()
@@ -852,16 +934,19 @@ function renderTl(){
   const el=document.getElementById('tl-list')
   if(!d.length){el.innerHTML=emptyHTML('해당하는 기획전이 없어요');return}
   el.innerHTML=d.map(p=>{
-    const pf=PF[p.platform]||PF['공홈'],pct=Math.min(100,Math.max(0,Math.round((new Date()-new Date(p.start_date))/(new Date(p.end_date)-new Date(p.start_date)||1)*100)))
+    const pf=PF[p.platform]||PF['공홈']
+    const pct=Math.min(100,Math.max(0,Math.round((new Date()-new Date(p.start_date))/(new Date(p.end_date)-new Date(p.start_date)||1)*100)))
     const dd=Math.ceil((new Date(p.deadline)-new Date())/86400000)
     const ddT=p.status==='종료'?'종료':dd>0?`D-${dd}`:dd===0?'D-Day':'마감'
-    return`<div class="row" onclick="openSheet('${p.id}')"><div class="row-ico" style="background:#F5F5F5">${pf.ico}</div><div class="row-body"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span class="row-title" style="flex:1;min-width:0">${p.name}</span><span class="chip ${CHIP[p.status]||'chip-before'}" style="flex-shrink:0">${p.status}</span></div><div class="prog-wrap"><div class="prog-fill" style="width:${pct}%;background:var(--blue)"></div></div><div style="display:flex;justify-content:space-between;margin-top:2px"><span style="font-size:11px;color:var(--t3)">${p.start_date} → ${p.end_date}</span><span style="font-size:11px;font-weight:700;color:${dd<=3&&dd>=0?'var(--red)':'var(--t2)'}">${ddT}</span></div></div></div>`
+    return`<div class="row" onclick="openSheet('${p.id}')"><div class="row-ico" style="background:#F5F5F5">${pf.ico}</div><div class="row-body"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span class="row-title" style="flex:1;min-width:0">${p.name}</span><span class="chip ${CHIP[p.status]||'chip-wait'}" style="flex-shrink:0">${p.status}</span></div><div class="prog-wrap"><div class="prog-fill" style="width:${pct}%;background:var(--blue)"></div></div><div style="display:flex;justify-content:space-between;margin-top:2px"><span style="font-size:11px;color:var(--t3)">${p.start_date} → ${p.end_date}</span><span style="font-size:11px;font-weight:700;color:${dd<=3&&dd>=0?'var(--red)':'var(--t2)'}">${ddT}</span></div></div></div>`
   }).join('')
 }
 
-// ── APPROVAL (redesigned) ─────────────────────────────────────────────
+// ── APPROVAL ─────────────────────────────────────────────────────────
 async function renderApv(){
-  const d=_cache,pend=d.filter(p=>p.approval==='대기'),done=d.filter(p=>p.approval!=='대기'&&p.status!=='신청전'&&p.status!=='종료')
+  const d=_cache
+  const pend=d.filter(p=>p.approval==='대기')
+  const done=d.filter(p=>p.approval!=='대기'&&p.status!=='결재대기')
   const pw=document.getElementById('apv-pend')
 
   pw.innerHTML=!pend.length?emptyHTML('결재 대기 중인 기획전이 없어요'):`
@@ -907,18 +992,19 @@ async function renderApv(){
         <button class="btn-yes" onclick="doApprove('${p.id}',true)">참여 승인</button>
         <button class="btn-no" onclick="doApprove('${p.id}',false)">미참여</button>
       </div>
-    </div></div>`}).join('')}`
+    </div></div>`
+  }).join('')}`
 
-  // 처리 완료
   document.getElementById('apv-done-sec').innerHTML=!done.length?'':
-    `<div style="height:4px"></div><div class="card">${done.map(p=>{const pf=PF[p.platform]||PF['공홈'],ok=p.approval==='승인';return`
-      <div class="row" onclick="openSheet('${p.id}')" style="opacity:${ok?.85:.4}">
+    `<div style="height:4px"></div><div class="card">${done.map(p=>{
+      const pf=PF[p.platform]||PF['공홈'],ok=p.approval==='승인'
+      return`<div class="row" onclick="openSheet('${p.id}')" style="opacity:${ok?.85:.4}">
         <div class="row-ico" style="background:${pf.bg}">${pf.ico}</div>
         <div class="row-body"><div class="row-title">${p.name}</div><div class="row-sub">${p.platform} · ${p.disc_rate}% 할인</div></div>
-        <span class="chip ${ok?'chip-active':'chip-done'}">${ok?'승인':'미참여'}</span>
-      </div>`}).join('')}</div>`
+        <span class="chip ${ok?'chip-active':'chip-done'}">${ok?p.status:'미참여'}</span>
+      </div>`
+    }).join('')}</div>`
 
-  // 관리자: 팀원 승인
   const us=document.getElementById('apv-users-sec')
   if(_profile?.role==='admin'){
     const{data:pu}=await sb.from('profiles').select('*').eq('status','pending')
@@ -932,15 +1018,38 @@ async function renderApv(){
   }
 }
 
+// ── 결재 승인 → 상태: 신청전 ──────────────────────────────────────────
 async function doApprove(id,ok){
   try{
-    const{error}=await sb.from('promotions').update({approval:ok?'승인':'미참여',status:ok?'신청완료':'신청전'}).eq('id',id)
+    // 승인 시 '신청전'으로 변경 (플랫폼에 신청은 아직 안 한 상태)
+    const newStatus = ok ? '신청전' : '신청전'
+    const payload = ok
+      ? {approval:'승인', status:'신청전'}
+      : {approval:'미참여', status:'결재대기'}
+
+    const{error}=await sb.from('promotions').update(payload).eq('id',id)
     if(error)throw new Error(error.message)
     const p=_cache.find(x=>x.id===id)
-    if(p){p.approval=ok?'승인':'미참여';p.status=ok?'신청완료':'신청전'}
-    updateBadge();renderApv();renderCal();toast(ok?'✓ 참여 승인 완료':'미참여 처리 완료')
+    if(p){p.approval=payload.approval;p.status=payload.status}
+    updateBadge();renderApv();renderCal()
+    toast(ok?'✓ 참여 승인 완료 — 플랫폼 신청 후 신청완료로 변경해 주세요':'미참여 처리 완료')
   }catch(e){console.error(e);toast('오류: '+e.message)}
 }
+
+// 신청전 → 신청완료 처리
+async function markSubmitted(id){
+  try{
+    const{error}=await sb.from('promotions').update({status:'신청완료'}).eq('id',id)
+    if(error)throw new Error(error.message)
+    const p=_cache.find(x=>x.id===id)
+    if(p) p.status='신청완료'
+    closeSheet()
+    toast('✓ 신청완료 처리되었습니다')
+    if(curScreen==='home')renderHome()
+    else if(curScreen==='timeline')renderTl()
+  }catch(e){toast('오류: '+e.message)}
+}
+
 async function approveUser(uid,name){
   try{const{error}=await sb.from('profiles').update({status:'active'}).eq('id',uid);if(error)throw error;toast(`✓ ${name}님 승인 완료`);renderApv()}catch(e){toast('오류: '+e.message)}
 }
@@ -976,7 +1085,11 @@ function doCalc(){
   document.getElementById('r-saved').textContent='-'+saved.toLocaleString()+'원'
   document.getElementById('margin-bar').style.width=Math.min(100,totalDisc)+'%'
   const info=document.getElementById('calc-info')
-  if(minB&&afterSale<minB){info.style.display='block';info.textContent=`⚠️ 기획전 적용가 ${afterSale.toLocaleString()}원이 쿠폰 최소 구매금액 ${minB.toLocaleString()}원 미만 — 쿠폰 사용 불가`;document.getElementById('r-coupon-amt').textContent='사용 불가'}else info.style.display='none'
+  if(minB&&afterSale<minB){
+    info.style.display='block'
+    info.textContent=`⚠️ 기획전 적용가 ${afterSale.toLocaleString()}원이 쿠폰 최소 구매금액 ${minB.toLocaleString()}원 미만 — 쿠폰 사용 불가`
+    document.getElementById('r-coupon-amt').textContent='사용 불가'
+  }else info.style.display='none'
   const warn=document.getElementById('calc-warn')
   warn.style.display=totalDisc>=45?'block':'none'
   if(totalDisc>=45)warn.textContent=`⚠️ 총 할인율 ${totalDisc}% — 마진을 확인해 주세요`
@@ -1020,13 +1133,13 @@ function checkOverlap(){
   const warn=document.getElementById('overlap-warn')
   const list=document.getElementById('overlap-list')
   if(!st||!en){warn.style.display='none';return}
-  const overlaps=_cache.filter(p=>p.platform===pf&&p.status!=='종료'&&p.start_date<=en&&p.end_date>=st)
+  const overlaps=_cache.filter(p=>p.platform===pf&&p.status!=='종료'&&p.start_date<=en&&p.end_date>=st&&p.id!==_editId)
   if(!overlaps.length){warn.style.display='none';return}
   warn.style.display='block'
   list.innerHTML=overlaps.map(p=>`<div class="overlap-item"><span class="overlap-dot"></span><div><div style="font-weight:600;color:var(--t1)">${p.name}</div><div style="font-size:11px;margin-top:1px">${fmtDate(p.start_date)} → ${fmtDate(p.end_date)} · ${p.status}</div></div></div>`).join('')
 }
 
-// ── EDIT ──────────────────────────────────────────────────────────────
+// ── EDIT PROMO ──────────────────────────────────────────────────────────
 function editPromo(id){
   const p=_cache.find(x=>x.id===id); if(!p) return
   _editId=id
@@ -1063,13 +1176,11 @@ function resetAddForm(){
   renderProdSelect(null, document.getElementById('a-pf')?.value||'무신사')
 }
 
-// 상품 선택 UI 렌더링
 async function renderProdSelect(promoId, platform){
   if(!_products.length) await loadProducts()
   const el=document.getElementById('a-prod-list')
   const disc=parseFloat(document.getElementById('a-disc')?.value)||0
 
-  // 이미 선택된 상품 목록 가져오기
   let selectedIds=[]
   if(promoId){
     const{data}=await sb.from('promotion_products').select('product_id').eq('promotion_id',promoId)
@@ -1096,8 +1207,6 @@ async function renderProdSelect(promoId, platform){
       </div>
     </div>`
   }).join('')
-
-  // 자동 가격 변경 안내 배너
   updateAutoPriceBanner()
 }
 
@@ -1162,10 +1271,8 @@ async function addPromo(){
       toast(`✓ "${name}" 등록 완료!`)
     }
 
-    // 상품 연결 저장
     const selectedIds=getSelectedProdIds()
     if(promoId){
-      // 기존 연결 삭제 후 재등록
       await sb.from('promotion_products').delete().eq('promotion_id',promoId)
       if(selectedIds.length){
         await sb.from('promotion_products').insert(selectedIds.map(pid=>({promotion_id:promoId,product_id:pid})))
@@ -1180,17 +1287,61 @@ async function addPromo(){
 }
 
 // ── DETAIL SHEET ──────────────────────────────────────────────────────
+// 프로세스 단계 표시
+function buildProcessBanner(status, approval){
+  const steps = ['결재대기','신청전','신청완료','진행중','종료']
+  const curIdx = steps.indexOf(status)
+  return `<div class="process-banner">` + steps.map((s,i)=>{
+    const cls = i<curIdx?'done':i===curIdx?'cur':'next'
+    return (i>0?`<span class="ps-arrow">›</span>`:'') + `<span class="ps ${cls}">${s}</span>`
+  }).join('') + `</div>`
+}
+
 function openSheet(id){
   const p=_cache.find(x=>x.id===id);if(!p)return
   const pf=PF[p.platform]||PF['공홈']
   const pct=Math.min(100,Math.max(0,Math.round((new Date()-new Date(p.start_date))/(new Date(p.end_date)-new Date(p.start_date)||1)*100)))
   const tot=Math.round((1-(1-p.disc_rate/100)*(1-(p.coupon_rate||0)/100))*100)
   const hasImg=!!p.image_url
+
+  // 상태별 액션 버튼
+  let actionsHTML = ''
+  if(p.status==='신청전' && p.approval==='승인'){
+    // 신청전: "플랫폼에 신청완료" 버튼 + 수정 + 삭제
+    actionsHTML = `
+      <div class="sheet-acts-full" style="margin-bottom:8px">
+        <button class="sa-submit" onclick="markSubmitted('${p.id}')">✓ 플랫폼 신청완료 처리</button>
+      </div>
+      <div class="sheet-acts">
+        <button class="sa-edit" onclick="editPromo('${p.id}')">수정하기</button>
+        <button class="sa-del" onclick="delPromo('${p.id}')">삭제</button>
+      </div>`
+  } else {
+    actionsHTML = `
+      <div class="sheet-acts-3">
+        <button class="sa-edit" onclick="editPromo('${p.id}')">수정하기</button>
+        <button class="sa-close" onclick="closeSheet()">닫기</button>
+        <button class="sa-del" onclick="delPromo('${p.id}')">삭제</button>
+      </div>`
+  }
+
   document.getElementById('sheet-inner').innerHTML=`
-    <div class="sheet-pf-row"><span class="pf-tag"><span class="pf-dot" style="background:${pf.dot}"></span>${p.platform}</span><span class="chip ${CHIP[p.status]||'chip-before'}">${p.status}</span></div>
+    <div class="sheet-pf-row">
+      <span class="pf-tag"><span class="pf-dot" style="background:${pf.dot}"></span>${p.platform}</span>
+      <span class="chip ${CHIP[p.status]||'chip-wait'}">${p.status}</span>
+    </div>
     <div class="sheet-name">${p.name}</div>
-    <div class="sheet-img">${hasImg?`<img src="${p.image_url}" alt="기획전 이미지" onclick="openImgFull('${p.image_url}')" style="cursor:zoom-in">`:`<div class="sheet-img-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>첨부 이미지 없음</span></div>`}</div>
-    <div class="sheet-period"><span class="sheet-period-badge">${fmtDate(p.start_date)}</span><span class="sheet-period-arrow">→</span><span class="sheet-period-badge">${fmtDate(p.end_date)}</span><span style="margin-left:auto;font-size:11px;color:var(--t3)">신청마감 ${fmtDate(p.deadline)}</span></div>
+    ${buildProcessBanner(p.status, p.approval)}
+    <div class="sheet-img">${hasImg
+      ?`<img src="${p.image_url}" alt="기획전 이미지" onclick="openImgFull('${p.image_url}')" style="cursor:zoom-in">`
+      :`<div class="sheet-img-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>첨부 이미지 없음</span></div>`
+    }</div>
+    <div class="sheet-period">
+      <span class="sheet-period-badge">${fmtDate(p.start_date)}</span>
+      <span class="sheet-period-arrow">→</span>
+      <span class="sheet-period-badge">${fmtDate(p.end_date)}</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--t3)">신청마감 ${fmtDate(p.deadline)}</span>
+    </div>
     <div class="sheet-disc-row">
       <div class="sheet-disc-box brand"><div class="sheet-disc-lbl">브랜드 자체 할인</div><div class="sheet-disc-num">${p.disc_rate>0?p.disc_rate+'%':'없음'}</div></div>
       <div class="sheet-disc-box coupon"><div class="sheet-disc-lbl">쿠폰 할인</div><div class="sheet-disc-num">${p.coupon_rate>0?p.coupon_rate+'%':'없음'}</div></div>
@@ -1200,9 +1351,11 @@ function openSheet(id){
     <div class="sheet-dr"><span class="sk">총 할인율</span><span class="sv" style="color:var(--red)">${tot}%</span></div>
     <div class="sheet-dr"><span class="sk">플랫폼 수수료</span><span class="sv">${p.fee_rate||0}%</span></div>
     ${p.note?`<div style="height:8px"></div><div class="sheet-note">💬 ${p.note}</div>`:'<div style="height:16px"></div>'}
-    <div class="sheet-acts"><button class="sa-edit" onclick="editPromo('${p.id}')">수정하기</button><button class="sa-close" onclick="closeSheet()">닫기</button><button class="sa-del" onclick="delPromo('${p.id}')">삭제</button></div>`
+    ${actionsHTML}`
+
   document.getElementById('sheet-bg').classList.add('on')
 }
+
 function openImgFull(url){
   const d=document.createElement('div')
   d.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:999;display:flex;align-items:center;justify-content:center;cursor:zoom-out'
@@ -1241,12 +1394,30 @@ async function renderProducts(){
   el.innerHTML=_products.map(p=>{
     const pp=_prices.filter(x=>x.product_id===p.id)
     return`<div class="prod-card">
-      <div class="prod-card-header" onclick="toggleProd('${p.id}',this)" id="ph-${p.id}">
-        <div class="prod-card-left">
-          ${p.image_url?`<img src="${p.image_url}" class="prod-thumb" style="object-fit:cover">`:`<div class="prod-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>`}
-          <div><div class="prod-name">${p.name}</div><div class="prod-cat">${p.category||'카테고리 없음'} · ${pp.filter(x=>x.is_active).length}개 플랫폼 판매 중</div></div>
+      <div class="prod-card-header" id="ph-${p.id}">
+        <div class="prod-card-left" onclick="toggleProd('${p.id}',document.getElementById('ph-${p.id}'))" style="flex:1;min-width:0;padding-right:8px">
+          ${p.image_url
+            ?`<img src="${p.image_url}" class="prod-thumb" style="object-fit:cover">`
+            :`<div class="prod-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>`}
+          <div style="min-width:0">
+            <div class="prod-name">${p.name}</div>
+            <div class="prod-cat">${p.category||'카테고리 없음'} · ${pp.filter(x=>x.is_active).length}개 플랫폼</div>
+          </div>
         </div>
-        <div class="prod-arrow" id="pa-${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+        <div class="prod-card-right">
+          <!-- 수정 버튼 -->
+          <button class="prod-action-btn" onclick="event.stopPropagation();openProdModal('${p.id}')" title="상품 수정">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <!-- 삭제 버튼 -->
+          <button class="prod-del-btn" onclick="event.stopPropagation();deleteProd('${p.id}','${p.name.replace(/'/g,"\\'")}')}" title="상품 삭제">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+          </button>
+          <!-- 펼치기 화살표 -->
+          <div class="prod-arrow" id="pa-${p.id}" onclick="toggleProd('${p.id}',document.getElementById('ph-${p.id}'))">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
       </div>
       <div class="prod-pf-table" id="pt-${p.id}">
         <div class="pf-head"><span>플랫폼</span><span>정상가</span><span>판매가</span><span>쿠폰</span><span></span></div>
@@ -1271,10 +1442,10 @@ function toggleProd(id, header){
   const isOpen=table.classList.contains('open')
   table.classList.toggle('open',!isOpen)
   arrow.classList.toggle('open',!isOpen)
-  header.classList.toggle('open',!isOpen)
+  if(header) header.classList.toggle('open',!isOpen)
 }
 
-// 상품 추가 모달
+// 상품 수정 모달
 function openProdModal(id){
   _editProdId=id||null
   const p=id?_products.find(x=>x.id===id):null
@@ -1297,6 +1468,18 @@ async function saveProd(){
   closeProdModal()
   toast(`✓ "${name}" ${_editProdId?'수정':'추가'} 완료!`)
   await renderProducts()
+}
+
+// 상품 삭제
+async function deleteProd(id, name){
+  if(!confirm(`"${name}" 상품을 삭제하시겠습니까?\n플랫폼 가격 정보도 함께 삭제됩니다.`)) return
+  try{
+    await sb.from('platform_prices').delete().eq('product_id',id)
+    await sb.from('promotion_products').delete().eq('product_id',id)
+    await sb.from('products').delete().eq('id',id)
+    toast(`✓ "${name}" 삭제 완료`)
+    await renderProducts()
+  }catch(e){toast('오류: '+e.message)}
 }
 
 // 플랫폼 가격 편집 모달
@@ -1343,8 +1526,16 @@ async function savePlatformPrice(){
 }
 
 // ── UTILS ─────────────────────────────────────────────────────────────
-function updateBadge(){const n=_cache.filter(p=>p.approval==='대기').length;const b=document.getElementById('t-badge');b.textContent=n;b.style.display=n?'':'none'}
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2800)}
+function updateBadge(){
+  const n=_cache.filter(p=>p.approval==='대기').length
+  const b=document.getElementById('t-badge')
+  b.textContent=n;b.style.display=n?'':'none'
+}
+function toast(msg){
+  const t=document.getElementById('toast')
+  t.textContent=msg;t.classList.add('on')
+  setTimeout(()=>t.classList.remove('on'),2800)
+}
 
 // ── BOOT ──────────────────────────────────────────────────────────────
 ;(async()=>{
@@ -1352,7 +1543,11 @@ function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t
   if(session)await bootApp(session.user)
   sb.auth.onAuthStateChange(async(ev,sess)=>{
     if(sess&&(ev==='SIGNED_IN'||ev==='TOKEN_REFRESHED'))await bootApp(sess.user)
-    if(ev==='SIGNED_OUT'){document.getElementById('pg-login').style.display='flex';document.getElementById('app').style.display='none';document.getElementById('pg-pending').style.display='none'}
+    if(ev==='SIGNED_OUT'){
+      document.getElementById('pg-login').style.display='flex'
+      document.getElementById('app').style.display='none'
+      document.getElementById('pg-pending').style.display='none'
+    }
   })
 })()
 </script>
