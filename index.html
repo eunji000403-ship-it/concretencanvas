@@ -1086,7 +1086,7 @@ async function renderProdSelect(promoId, platform){
     const discPrice=disc&&normalPrice?Math.round(normalPrice*(1-disc/100)):0
     const checked=selectedIds.includes(p.id)
     return`<div class="prod-select-item" onclick="toggleProdSelect(this,'${p.id}')">
-      <div class="prod-check${checked?' checked'}" id="pcheck-${p.id}">
+      <div class="prod-check${checked?' checked':''}" id="pcheck-${p.id}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <div style="flex:1;min-width:0">
