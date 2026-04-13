@@ -12,8 +12,7 @@
   const SUPABASE_URL = 'https://ffmsbhbgypwlqxwgifsm.supabase.co'
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZmbXNiaGJneXB3bHF4d2dpZnNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MzAzMzMsImV4cCI6MjA5MTIwNjMzM30.TVlcnmjs6hjNGvCBz0KDASN4AtIMoAmlKY6xmh50Kxw'
 </script>
-
-
+  
 <style>
 :root{
   --bg:#F2F4F6;--white:#fff;--blue:#3182F6;--blue-l:#EBF3FE;
@@ -326,6 +325,21 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
 .modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 20px 4px;}
 .mbtn-c{background:var(--bg);color:var(--t2);border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;}
 .mbtn-s{background:var(--blue);color:#fff;border:none;border-radius:var(--rsm);padding:14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}
+/* ── PRODUCT SELECTION IN FORM ─── */
+.prod-select-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bg);cursor:pointer;}
+.prod-select-item:last-child{border-bottom:none;}
+.prod-select-item:active{opacity:.7;}
+.prod-check{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;}
+.prod-check.checked{background:var(--blue);border-color:var(--blue);}
+.prod-check svg{width:13px;height:13px;color:#fff;display:none;}
+.prod-check.checked svg{display:block;}
+.prod-select-name{font-size:14px;font-weight:600;color:var(--t1);flex:1;min-width:0;}
+.prod-select-price{font-size:12px;color:var(--t3);flex-shrink:0;}
+.prod-select-calc{font-size:11px;color:var(--blue);margin-top:2px;}
+
+/* 가격 자동변경 안내 배너 */
+.auto-price-banner{background:var(--blue-l);border-radius:var(--rsm);padding:10px 14px;margin:10px 0 0;display:none;}
+.auto-price-banner-txt{font-size:12px;color:var(--blue);line-height:1.6;font-weight:500;}
 </style>
 </head>
 <body>
@@ -491,6 +505,15 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.4;width:16px;}
       <div class="form-card">
         <div class="form-sec-title">메모</div>
         <div class="f-ta-wrap"><textarea class="f-ta" id="a-note" placeholder="플랫폼 요청사항, 특이사항" rows="2"></textarea></div>
+      </div>
+      <div class="form-card">
+        <div class="form-sec-title">참여 상품 선택</div>
+        <div id="a-prod-list" style="padding:10px 16px 14px">
+          <div style="font-size:13px;color:var(--t3);text-align:center;padding:12px 0" id="a-prod-empty">상품 탭에서 상품을 먼저 등록해 주세요</div>
+        </div>
+        <div class="auto-price-banner" id="auto-price-banner" style="margin:0 16px 14px">
+          <div class="auto-price-banner-txt"></div>
+        </div>
       </div>
       <div class="form-card">
         <div class="form-sec-title">기획전 이미지 (MD 메일 캡쳐 등)</div>
@@ -682,8 +705,46 @@ function autoStatus(){
     let ns=p.status
     if(todayStr>=p.start_date&&todayStr<=p.end_date)ns='진행중'
     if(todayStr>p.end_date)ns='종료'
-    if(ns!==p.status){await sb.from('promotions').update({status:ns}).eq('id',p.id);p.status=ns}
+    if(ns!==p.status){
+      await sb.from('promotions').update({status:ns}).eq('id',p.id)
+      p.status=ns
+      // 가격 자동 변경
+      if(ns==='진행중') await applyPromoPrice(p)
+      if(ns==='종료')   await revertPromoPrice(p)
+    }
   })
+}
+
+// 기획전 시작 → 할인가 적용
+async function applyPromoPrice(promo){
+  if(!promo.disc_rate) return
+  const{data:links}=await sb.from('promotion_products').select('product_id').eq('promotion_id',promo.id)
+  if(!links?.length) return
+  for(const {product_id} of links){
+    const pr=_prices.find(x=>x.product_id===product_id&&x.platform===promo.platform)
+    if(!pr||!pr.normal_price) continue
+    const discPrice=Math.round(pr.normal_price*(1-promo.disc_rate/100))
+    await sb.from('platform_prices').update({
+      sale_price:discPrice,
+      original_price:pr.sale_price||pr.normal_price,
+      active_promotion_id:promo.id
+    }).eq('id',pr.id)
+  }
+}
+
+// 기획전 종료 → 원래 가격으로 복원
+async function revertPromoPrice(promo){
+  const{data:links}=await sb.from('promotion_products').select('product_id').eq('promotion_id',promo.id)
+  if(!links?.length) return
+  for(const {product_id} of links){
+    const pr=_prices.find(x=>x.product_id===product_id&&x.platform===promo.platform&&x.active_promotion_id===promo.id)
+    if(!pr) continue
+    await sb.from('platform_prices').update({
+      sale_price:pr.original_price||pr.normal_price,
+      original_price:0,
+      active_promotion_id:null
+    }).eq('id',pr.id)
+  }
 }
 function subscribeRT(){
   sb.channel('rt').on('postgres_changes',{event:'*',schema:'public',table:'promotions'},async()=>{
@@ -969,8 +1030,6 @@ function editPromo(id){
   const p=_cache.find(x=>x.id===id); if(!p) return
   _editId=id
   closeSheet()
-
-  // 폼 채우기
   document.getElementById('a-name').value = p.name
   document.getElementById('a-pf').value   = p.platform
   document.getElementById('a-mgr').value  = p.manager||''
@@ -981,20 +1040,15 @@ function editPromo(id){
   document.getElementById('a-coupon').value = p.coupon_rate||''
   document.getElementById('a-fee').value    = p.fee_rate||''
   document.getElementById('a-note').value   = p.note||''
-
-  // 기존 이미지 미리보기
   if(p.image_url){
     document.getElementById('img-preview-img').src = p.image_url
     document.getElementById('img-preview').style.display='block'
     document.getElementById('dropzone').querySelector('.img-dropzone-txt').textContent='이미지 첨부됨 (교체하려면 탭)'
-  }else{
-    removeImg()
-  }
-
-  // UI 업데이트
+  }else{ removeImg() }
   document.querySelector('#s-add .topbar-title').textContent='기획전 수정'
   document.getElementById('add-btn').textContent='수정 완료'
   document.getElementById('overlap-warn').style.display='none'
+  renderProdSelect(id, p.platform)
   go('add')
 }
 
@@ -1005,6 +1059,70 @@ function resetAddForm(){
   document.getElementById('overlap-warn').style.display='none'
   document.querySelector('#s-add .topbar-title').textContent='기획전 등록'
   document.getElementById('add-btn').textContent='결재 요청 보내기'
+  renderProdSelect(null, document.getElementById('a-pf')?.value||'무신사')
+}
+
+// 상품 선택 UI 렌더링
+async function renderProdSelect(promoId, platform){
+  if(!_products.length) await loadProducts()
+  const el=document.getElementById('a-prod-list')
+  const disc=parseFloat(document.getElementById('a-disc')?.value)||0
+
+  // 이미 선택된 상품 목록 가져오기
+  let selectedIds=[]
+  if(promoId){
+    const{data}=await sb.from('promotion_products').select('product_id').eq('promotion_id',promoId)
+    selectedIds=(data||[]).map(x=>x.product_id)
+  }
+
+  if(!_products.length){
+    el.innerHTML='<div style="font-size:13px;color:var(--t3);text-align:center;padding:12px 0">상품 탭에서 상품을 먼저 등록해 주세요</div>'
+    return
+  }
+
+  el.innerHTML=_products.map(p=>{
+    const pr=_prices.find(x=>x.product_id===p.id&&x.platform===platform)
+    const normalPrice=pr?.normal_price||0
+    const discPrice=disc&&normalPrice?Math.round(normalPrice*(1-disc/100)):0
+    const checked=selectedIds.includes(p.id)
+    return`<div class="prod-select-item" onclick="toggleProdSelect(this,'${p.id}')">
+      <div class="prod-check${checked?' checked'}" id="pcheck-${p.id}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div style="flex:1;min-width:0">
+        <div class="prod-select-name">${p.name}</div>
+        ${normalPrice?`<div class="prod-select-price">${platform} 정상가 ${normalPrice.toLocaleString()}원${discPrice?` → <span style="color:var(--red)">${discPrice.toLocaleString()}원</span>`:''}</div>`:`<div class="prod-select-price" style="color:var(--t3)">${platform} 가격 미설정</div>`}
+      </div>
+    </div>`
+  }).join('')
+
+  // 자동 가격 변경 안내 배너
+  updateAutoPriceBanner()
+}
+
+function toggleProdSelect(el, prodId){
+  const check=document.getElementById('pcheck-'+prodId)
+  check.classList.toggle('checked')
+  updateAutoPriceBanner()
+}
+
+function getSelectedProdIds(){
+  return _products.filter(p=>document.getElementById('pcheck-'+p.id)?.classList.contains('checked')).map(p=>p.id)
+}
+
+function updateAutoPriceBanner(){
+  const sel=getSelectedProdIds()
+  const disc=parseFloat(document.getElementById('a-disc')?.value)||0
+  const banner=document.getElementById('auto-price-banner')
+  if(!banner) return
+  if(sel.length&&disc){
+    const pf=document.getElementById('a-pf')?.value||''
+    banner.style.display='block'
+    banner.querySelector('.auto-price-banner-txt').textContent=
+      `✓ ${sel.length}개 상품이 기획전 시작 시 ${pf} 판매가가 자동으로 ${disc}% 할인 적용되고, 종료 시 원래 가격으로 복원돼요.`
+  }else{
+    banner.style.display='none'
+  }
 }
 
 // ── ADD / UPDATE ───────────────────────────────────────────────────────
@@ -1017,7 +1135,6 @@ async function addPromo(){
   const btn=document.getElementById('add-btn');btn.disabled=true;btn.textContent=_editId?'저장 중...':'등록 중...'
   const prog=document.getElementById('upload-progress')
   try{
-    // 이미지: 새 파일이 있으면 업로드, 없으면 기존 URL 유지
     let imgUrl = _editId ? (_cache.find(x=>x.id===_editId)?.image_url||null) : null
     if(_imgFile){ prog.style.display='block'; imgUrl=await uploadImg(); prog.style.display='none' }
 
@@ -1032,16 +1149,26 @@ async function addPromo(){
       image_url:imgUrl
     }
 
+    let promoId=_editId
     if(_editId){
-      // 수정 모드 — 상태는 그대로 유지
       const{error}=await sb.from('promotions').update(payload).eq('id',_editId)
       if(error)throw new Error(error.message)
       toast(`✓ "${name}" 수정 완료!`)
     }else{
-      // 신규 등록
-      const{error}=await sb.from('promotions').insert({...payload,status:'결재대기',approval:'대기'})
+      const{data,error}=await sb.from('promotions').insert({...payload,status:'결재대기',approval:'대기'}).select().single()
       if(error)throw new Error(error.message)
+      promoId=data.id
       toast(`✓ "${name}" 등록 완료!`)
+    }
+
+    // 상품 연결 저장
+    const selectedIds=getSelectedProdIds()
+    if(promoId){
+      // 기존 연결 삭제 후 재등록
+      await sb.from('promotion_products').delete().eq('promotion_id',promoId)
+      if(selectedIds.length){
+        await sb.from('promotion_products').insert(selectedIds.map(pid=>({promotion_id:promoId,product_id:pid})))
+      }
     }
 
     resetAddForm()
